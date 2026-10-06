@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- SPEC 9 §8.3 (taak 9.5): bij elke installatie en update de rechten van de technische gebruiker bijwerken
+         (Time Off: Officer als Time Off er is, alle bedrijven). /ping doet hetzelfde voor een app die later bijkomt. -->
+    <function model="ss_timesheets.connection" name="_ensure_connector"/>
+</odoo>

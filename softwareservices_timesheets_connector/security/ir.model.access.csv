@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_connection_system,ss_timesheets.connection system,model_ss_timesheets_connection,base.group_system,1,1,1,1
+access_connection_connector,ss_timesheets.connection connector,model_ss_timesheets_connection,group_connector,1,0,0,0
+access_nonce_system,ss_timesheets.nonce system,model_ss_timesheets_nonce,base.group_system,1,0,0,0
+access_link_system,ss_timesheets.employee_link system,model_ss_timesheets_employee_link,base.group_system,1,1,1,1
+access_link_connector,ss_timesheets.employee_link connector,model_ss_timesheets_employee_link,group_connector,1,0,0,0

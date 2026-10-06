@@ -1,0 +1,36 @@
+{
+  "comment": "Gedeelde testvectoren voor SSTS1 (SPEC 5.1 §5). Dezelfde inhoud staat in odoo_module/<versie>/softwareservices_timesheets_connector/tests/ssts1_vectors.json.",
+  "secret_b64": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8=",
+  "vectors": [
+    {
+      "direction": "app->odoo",
+      "path": "/ss_timesheets/v1/ping",
+      "timestamp": "1790000000",
+      "nonce": "00112233445566778899aabbccddeeff",
+      "body": "{}",
+      "body_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "canonical": "SSTS1\napp->odoo\nPOST\n/ss_timesheets/v1/ping\n1790000000\n00112233445566778899aabbccddeeff\n44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "signature": "d73d1d514ae62bcd71d894911011ed3ccfb247dd2e81d411c404b7b2653278b9"
+    },
+    {
+      "direction": "app->odoo",
+      "path": "/ss_timesheets/v1/timesheets/create",
+      "timestamp": "1790000123",
+      "nonce": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "body": "{\"lines\":[{\"client_ref\":\"42\",\"employee_id\":7,\"project_id\":3,\"task_id\":false,\"date\":\"2026-09-21\",\"hours\":1.5,\"name\":\"Overleg één\",\"company_id\":1}]}",
+      "body_sha256": "c9203d15f5f879d9e20e174e37fc2ba058591fd0a65f0e87a6b4e3f7827a8dc7",
+      "canonical": "SSTS1\napp->odoo\nPOST\n/ss_timesheets/v1/timesheets/create\n1790000123\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\nc9203d15f5f879d9e20e174e37fc2ba058591fd0a65f0e87a6b4e3f7827a8dc7",
+      "signature": "7d571f8f8a882bd5f89629eda76ee527b337cac143f49fc01202cbbfbeecd5b5"
+    },
+    {
+      "direction": "odoo->app",
+      "path": "/api/module/v1/ping",
+      "timestamp": "1790000456",
+      "nonce": "ffffffffffffffffffffffffffffffff",
+      "body": "",
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "canonical": "SSTS1\nodoo->app\nPOST\n/api/module/v1/ping\n1790000456\nffffffffffffffffffffffffffffffff\ne3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "signature": "00a11bfdacc1e45987f3cfe917994eadf6ba5f079188bb54b08cd16c9a569033"
+    }
+  ]
+}
