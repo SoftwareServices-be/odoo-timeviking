@@ -31,7 +31,7 @@ SOURCE_VERSION = '18'
 VERSIONS = ('18', '19', '20')
 SKIP_DIRS = {'__pycache__'}
 SKIP_SUFFIXES = {'.pyc', '.pyo'}
-RENDER_SUFFIXES = {'.py', '.xml', '.csv', '.html', '.rst', '.txt', '.md'}
+RENDER_SUFFIXES = {'.py', '.xml', '.csv', '.html', '.rst', '.txt', '.md', '.po', '.pot'}
 CONVERT_SUFFIXES = {'.py', '.xml', '.csv'}
 ZIP_DATE = (2026, 10, 4, 0, 0, 0)        # fixed, so the same source always gives the same zip
 TOKEN = re.compile(r'\{\{([A-Z_]+)\}\}')
@@ -300,7 +300,11 @@ def release(version, repo=None, message=None, allow_working_name=False):
         source = 'uncommitted'
     msg = message or f'{full_version(version)}: build from main {source}'
     args = ['commit-tree', tree, '-m', msg] + (['-p', head] if head else [])
-    commit = _git(repo, *args)
+    try:
+        commit = _git(repo, *args)
+    except subprocess.CalledProcessError as e:
+        raise SystemExit(f'{branch}: git commit-tree failed ({e.stderr.decode().strip()}). Is a git identity set? Export '
+                         'GIT_AUTHOR_NAME, GIT_AUTHOR_EMAIL, GIT_COMMITTER_NAME and GIT_COMMITTER_EMAIL first.')
     _git(repo, 'update-ref', f'refs/heads/{branch}', commit, *([head] if head else []))
     return commit
 

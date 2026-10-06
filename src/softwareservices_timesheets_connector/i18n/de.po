@@ -1,0 +1,429 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* softwareservices_timesheets_connector
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-06 12:13+0000\n"
+"PO-Revision-Date: 2026-10-06 12:13+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__odoo_url
+msgid "Address of this Odoo"
+msgstr "Adresse dieses Odoo"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__allowed
+msgid "Allowed"
+msgstr "Erlaubt"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model,name:softwareservices_timesheets_connector.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Analysezeile"
+
+#. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/connection.py:0
+msgid "Cannot reach %(url)s: %(error)s"
+msgstr "%(url)s ist nicht erreichbar: %(error)s"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__company_ids
+msgid "Companies"
+msgstr "Unternehmen"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__company_id
+msgid "Company"
+msgstr "Unternehmen"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__connection_ref
+#: model:ir.ui.menu,name:softwareservices_timesheets_connector.menu_connection
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_connection_form
+msgid "Connection"
+msgstr "Verbindung"
+
+#. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/connection.py:0
+msgid "Connection OK with %(name)s"
+msgstr "Verbindung mit %(name)s in Ordnung"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model,name:softwareservices_timesheets_connector.model_ss_timesheets_connection
+msgid "Connection with {{PRODUCT_NAME}}"
+msgstr "Verbindung mit {{PRODUCT_NAME}}"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__create_uid
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__create_date
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__display_name
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__display_name
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_nonce__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__employee_id
+msgid "Employee"
+msgstr "Mitarbeiter"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model,name:softwareservices_timesheets_connector.model_ss_timesheets_employee_link
+msgid "Employee linked to {{PRODUCT_NAME}}"
+msgstr "Mit {{PRODUCT_NAME}} verknüpfter Mitarbeiter"
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_connection_form
+msgid "Employees"
+msgstr "Mitarbeiter"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__id
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__id
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_nonce__id
+msgid "ID"
+msgstr "ID"
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_connection_form
+msgid ""
+"In {{PRODUCT_NAME}}, go to Settings › Odoo, create a pairing code and paste it below.\n"
+"                        The code is valid for 15 minutes."
+msgstr ""
+"Erstellen Sie in {{PRODUCT_NAME}} unter Einstellungen › Odoo einen Kopplungscode und fügen Sie ihn unten ein.\n"
+"                        Der Code ist 15 Minuten gültig."
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__key_id
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_nonce__key_id
+msgid "Key"
+msgstr "Schlüssel"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__write_uid
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert von"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__write_date
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__last_message
+msgid "Last message"
+msgstr "Letzte Meldung"
+
+#. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/connection.py:0
+#: model:ir.actions.act_window,name:softwareservices_timesheets_connector.action_employee_links
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__link_count
+#: model:ir.ui.menu,name:softwareservices_timesheets_connector.menu_employee_links
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_employee_link_list
+msgid "Linked employees"
+msgstr "Verknüpfte Mitarbeiter"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__linked_at
+msgid "Linked on"
+msgstr "Verknüpft am"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__mode
+msgid "Mode"
+msgstr "Modus"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_nonce__nonce
+msgid "Nonce"
+msgstr "Nonce"
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_employee_link_search
+msgid "Not allowed"
+msgstr "Nicht erlaubt"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields.selection,name:softwareservices_timesheets_connector.selection__ss_timesheets_connection__state__unpaired
+msgid "Not paired"
+msgstr "Nicht gekoppelt"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,help:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__allowed
+msgid ""
+"Off: the service may no longer write or change timesheets for this employee."
+msgstr "Aus: Der Dienst darf für diesen Mitarbeiter keine Zeiten mehr schreiben oder ändern."
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_connection_form
+msgid "Pair"
+msgstr "Koppeln"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields.selection,name:softwareservices_timesheets_connector.selection__ss_timesheets_connection__state__paired
+msgid "Paired"
+msgstr "Gekoppelt"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__paired_at
+msgid "Paired since"
+msgstr "Gekoppelt seit"
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_connection_form
+msgid "Paired with"
+msgstr "Gekoppelt mit"
+
+#. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/connection.py:0
+msgid "Paired with %(url)s"
+msgstr "Gekoppelt mit %(url)s"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__pair_code
+msgid "Pairing code"
+msgstr "Kopplungscode"
+
+#. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/connection.py:0
+msgid "Pairing failed: %(error)s"
+msgstr "Kopplung fehlgeschlagen: %(error)s"
+
+#. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/connection.py:0
+msgid "Paste the 12-character pairing code from {{PRODUCT_NAME}}."
+msgstr "Fügen Sie den 12-stelligen Kopplungscode aus {{PRODUCT_NAME}} ein."
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__prev_key_id
+msgid "Prev Key"
+msgstr "Vorheriger Schlüssel"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__prev_secret
+msgid "Prev Secret"
+msgstr "Vorheriges Geheimnis"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__prev_valid_until
+msgid "Prev Valid Until"
+msgstr "Vorheriger gültig bis"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields.selection,name:softwareservices_timesheets_connector.selection__ss_timesheets_connection__mode__push
+msgid "Push: the service calls Odoo"
+msgstr "Push: Der Dienst ruft Odoo auf"
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_connection_form
+msgid "Scope"
+msgstr "Umfang"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__secret
+msgid "Secret"
+msgstr "Geheimnis"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_nonce__seen_at
+msgid "Seen At"
+msgstr "Gesehen am"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__service_url
+msgid "Service URL"
+msgstr "Dienst-URL"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__state
+msgid "Status"
+msgstr "Status"
+
+#. module: softwareservices_timesheets_connector
+#: model:res.groups,comment:softwareservices_timesheets_connector.group_connector
+msgid "Technical group of the {{PRODUCT_NAME}} module. Do not give it to people."
+msgstr "Technische Gruppe des {{PRODUCT_NAME}}-Moduls. Nicht an Personen vergeben."
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_connection_form
+msgid "Test"
+msgstr "Testen"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,help:softwareservices_timesheets_connector.field_ss_timesheets_connection__service_url
+msgid "The address of {{PRODUCT_NAME}}, for example https://app.example.com"
+msgstr "Die Adresse von {{PRODUCT_NAME}}, zum Beispiel https://app.beispiel.de"
+
+#. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/connection.py:0
+msgid "The answer from %(url)s is not validly signed."
+msgstr "Die Antwort von %(url)s ist nicht gültig signiert."
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,help:softwareservices_timesheets_connector.field_ss_timesheets_connection__company_ids
+msgid ""
+"The companies whose projects, employees and timesheets the service may see."
+msgstr "Die Unternehmen, deren Projekte, Mitarbeiter und Zeiten der Dienst sehen darf."
+
+#. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/connection.py:0
+msgid ""
+"The pairing code is invalid or expired. Create a new one in {{PRODUCT_NAME}}."
+msgstr "Der Kopplungscode ist ungültig oder abgelaufen. Erstellen Sie in {{PRODUCT_NAME}} einen neuen."
+
+#. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/connection.py:0
+msgid "The service URL must start with https://."
+msgstr "Die Dienst-URL muss mit https:// beginnen."
+
+#. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/connection.py:0
+msgid "The service refused the test: %(error)s"
+msgstr "Der Dienst hat den Test abgelehnt: %(error)s"
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_connection_form
+msgid ""
+"The service will no longer be able to write timesheets in Odoo. Pairing "
+"again needs a new pairing code. Continue?"
+msgstr "Der Dienst kann danach keine Zeiten mehr in Odoo schreiben. Für eine erneute Kopplung ist ein neuer Kopplungscode nötig. Fortfahren?"
+
+#. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/connection.py:0
+msgid "This Odoo is not paired."
+msgstr "Dieses Odoo ist nicht gekoppelt."
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.constraint,message:softwareservices_timesheets_connector.constraint_ss_timesheets_employee_link_employee_unique
+msgid "This employee is already linked."
+msgstr "Dieser Mitarbeiter ist bereits verknüpft."
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.constraint,message:softwareservices_timesheets_connector.constraint_ss_timesheets_nonce_key_nonce_unique
+msgid "This nonce has already been used."
+msgstr "Diese Nonce wurde bereits verwendet."
+
+#. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/connection.py:0
+#: model:ir.actions.server,name:softwareservices_timesheets_connector.action_open_connection
+#: model:ir.ui.menu,name:softwareservices_timesheets_connector.menu_root
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_connection_form
+msgid "{{PRODUCT_NAME}}"
+msgstr "{{PRODUCT_NAME}}"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_account_analytic_line__ss_client_ref
+msgid "{{PRODUCT_NAME}} reference"
+msgstr "{{PRODUCT_NAME}}-Referenz"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.actions.server,name:softwareservices_timesheets_connector.cron_cleanup_ir_actions_server
+msgid "{{PRODUCT_NAME}}: clean up nonces and old keys"
+msgstr "{{PRODUCT_NAME}}: Nonces und alte Schlüssel aufräumen"
+
+#. module: softwareservices_timesheets_connector
+#: model:res.groups,name:softwareservices_timesheets_connector.group_connector
+msgid "{{PRODUCT_NAME}}: connector"
+msgstr "{{PRODUCT_NAME}}: Konnektor"
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_connection_form
+msgid "Unpair"
+msgstr "Entkoppeln"
+
+#. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/connection.py:0
+msgid "Unpaired"
+msgstr "Entkoppelt"
+
+#. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/service.py:0
+msgid "Unpaired by {{PRODUCT_NAME}}"
+msgstr "Von {{PRODUCT_NAME}} entkoppelt"
+
+#. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/connection.py:0
+msgid ""
+"Unpaired; the service answered HTTP %(status)s and will notice at the next "
+"request"
+msgstr "Entkoppelt; der Dienst antwortete mit HTTP %(status)s und merkt es bei der nächsten Anfrage"
+
+#. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/connection.py:0
+msgid ""
+"Unpaired; the service was not reachable (%(error)s) and will notice at the "
+"next request"
+msgstr "Entkoppelt; der Dienst war nicht erreichbar (%(error)s) und merkt es bei der nächsten Anfrage"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model,name:softwareservices_timesheets_connector.model_ss_timesheets_nonce
+msgid "Used nonce ({{PRODUCT_NAME}})"
+msgstr "Verwendete Nonce ({{PRODUCT_NAME}})"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__external_user
+msgid "User in {{PRODUCT_NAME}}"
+msgstr "Benutzer in {{PRODUCT_NAME}}"
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.hr_timesheet_line_search
+msgid "Via {{PRODUCT_NAME}}"
+msgstr "Über {{PRODUCT_NAME}}"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,help:softwareservices_timesheets_connector.field_ss_timesheets_connection__odoo_url
+msgid "Where the service reaches this Odoo. Defaults to web.base.url."
+msgstr "Unter dieser Adresse erreicht der Dienst dieses Odoo. Standard: web.base.url."
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_connection_form
+msgid "XXXX-XXXX-XXXX"
+msgstr "XXXX-XXXX-XXXX"
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_connection_form
+msgid "https://..."
+msgstr "https://..."
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_connection_form
+msgid "since"
+msgstr "seit"

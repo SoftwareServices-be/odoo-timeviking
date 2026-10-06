@@ -5,4 +5,4 @@ class AccountAnalyticLine(models.Model):
     _inherit = 'account.analytic.line'
 
     # het id van de regel in {{PRODUCT_NAME}}: maakt /timesheets/create idempotent (SPEC 5.1 §7)
-    ss_client_ref = fields.Char('Referentie {{PRODUCT_NAME}}', index=True, copy=False, readonly=True)
+    ss_client_ref = fields.Char('{{PRODUCT_NAME}} reference', index=True, copy=False, readonly=True)

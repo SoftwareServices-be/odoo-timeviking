@@ -3,6 +3,12 @@
 The module version is `<odoo version>.<module version>`, for example `19.0.1.2.0`. The module version is the same for all
 Odoo versions and lives in `product.json` (`MODULE_VERSION`).
 
+## 1.2.1 (2026-10-06)
+
+- English is now the source language of all screens, menus, field labels, help texts, messages, the scheduled action and the
+  security group. New `i18n/` with the template and Dutch (`nl`), French (`fr`) and German (`de`) translations.
+- English store screenshots.
+
 ## 1.2.0 (2026-10-06)
 
 - Own repository, one source for Odoo 18, 19 and 20 (`tools/build.py`), version branches for the Odoo Apps store.

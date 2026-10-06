@@ -35,7 +35,7 @@ def _log_refusal(env, code, key_id):
     try:
         env['ir.logging'].sudo().create({'name': 'ss_timesheets', 'type': 'server', 'level': 'WARNING', 'path': PREFIX,
                                          'func': 'verify', 'line': '0',
-                                         'message': f'Verzoek geweigerd ({code}) van {ip}, key_id {(key_id or "-")[:40]}'})
+                                         'message': f'Request refused ({code}) from {ip}, key_id {(key_id or "-")[:40]}'})
     except Exception:                                                  # het loggen mag de weigering nooit laten falen
         _logger.exception('ss_timesheets: kon de weigering niet in ir.logging zetten')
 
@@ -75,6 +75,6 @@ class ConnectorController(http.Controller):
         except ValueError:
             body = None
         if not isinstance(body, dict):
-            return _response({'error': 'bad_request', 'message': 'JSON-object verwacht'}, 400, secret, path)
+            return _response({'error': 'bad_request', 'message': 'JSON object expected'}, 400, secret, path)
         status, payload = service.run(env, connection, endpoint, body)
         return _response(payload, status, secret, path)

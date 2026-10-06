@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
     <record id="cron_cleanup" model="ir.cron">
-        <field name="name">{{PRODUCT_NAME}}: nonces en oude sleutels opruimen</field>
+        <field name="name">{{PRODUCT_NAME}}: clean up nonces and old keys</field>
         <field name="model_id" ref="model_ss_timesheets_connection"/>
         <field name="state">code</field>
         <field name="code">model._cron_cleanup()</field>

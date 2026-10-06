@@ -57,10 +57,22 @@ python3 tools/build.py dist            # dist/18.0, dist/19.0, dist/20.0 (an add
 python3 tools/build.py zip 19          # dist/softwareservices_timesheets_connector-19.0.zip
 python3 tools/build.py check           # store checks for every version, and are the branches up to date?
 python3 -m pytest                      # tests of the build
+python3 tools/build.py release         # write the 18.0/19.0/20.0 branches (commit your changes first)
 ```
 
 Change only `src/`, `product.json`, `tools/` and `assets/`. A difference between Odoo versions that the build does not
 know yet goes into `convert()` in `tools/build.py`, with a test in `tests/test_build.py`.
+
+`release` uses `git commit-tree`, which needs a git identity. Without one (a container, CI) set
+`GIT_AUTHOR_NAME`, `GIT_AUTHOR_EMAIL`, `GIT_COMMITTER_NAME` and `GIT_COMMITTER_EMAIL` first; otherwise `release` stops with a clear error.
+
+### Translations
+
+The source language of every visible text is English; `i18n/` holds the template (`.pot`) and `nl.po`, `fr.po` and `de.po`.
+The files use the same `{{PRODUCT_NAME}}` placeholder as the rest of `src/`. After changing a text, regenerate the template
+with `odoo-bin -d <db> --modules=softwareservices_timesheets_connector --i18n-export=x.pot` (on the built module), put
+`{{PRODUCT_NAME}}` back for the product name, and update the three `.po` files. Texts in `service.py` answers to the service
+(API messages) stay plain English and are not translated.
 
 Optional: `pip install pre-commit && pre-commit install` (whitespace, JSON/XML, flake8, `build.py check`).
 
@@ -95,8 +107,9 @@ change here is in the app's download after a restart.
   the main project's `docs/merk/`).
 - `static/description/banner.png`, 560×280, the cover image (`images` in the manifest): from `assets/banner.html`, with
   the TimeViking wordmark and palette (Fjord, Staal, Koper).
-- `static/description/screenshot_1..3.png`: the week calendar and the PDF template editor of the service, and the
-  connection screen in Odoo 19. Take them again with a headless browser after UI changes (1440×900).
+- `static/description/screenshot_1..2.png`: the connection screen and the linked-employees list in Odoo 19, in English, with
+  fictional data (https://app.timeviking.com). The service itself is Dutch, so no screenshots of it. Take them again with a
+  headless browser after UI changes (1440 px wide).
 
 ```sh
 SHOT=../softwareservices-odoo-timesheets/var/browser/shot.sh python3 tools/render_assets.py   # or CHROME=/path/to/chromium
@@ -114,10 +127,10 @@ licences or prices, no "official", "certified" or "partner".
 3. Commit on `main`, then write the version branches:
 
    ```sh
-   python3 tools/build.py release          # one commit per changed branch: "19.0.1.2.0: build from main <sha>"
+   python3 tools/build.py release          # one commit per changed branch: "19.0.1.2.1: build from main <sha>"
    python3 tools/build.py check            # now also "branch up to date"
    git push origin main 18.0 19.0 20.0
-   git tag v1.2.0 && git push origin v1.2.0
+   git tag v1.2.1 && git push origin v1.2.1
    ```
 
 `release` uses git plumbing: it never checks out a branch or touches your working tree.
@@ -132,8 +145,7 @@ licences or prices, no "official", "certified" or "partner".
 5. The module is free (`'price': 0`). Check the vendor guidelines before publishing: description and screenshots in English,
    the external service clearly announced (done in the summary and description), opt-in before data leaves Odoo (pairing).
 
-Before the first publication: set the production URL (`WEBSITE`) in `product.json`, translate the module's interface (now Dutch) to English with `i18n/nl.po`, and retake the screenshots in
-English with the new name.
+Before the first publication: set the production URL (`WEBSITE`) in `product.json`.
 
 ## License
 
