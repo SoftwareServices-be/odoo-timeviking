@@ -1,0 +1,6 @@
+id,name,model_id,group_id/id,operation,domain
+access_connection_system,ss_timesheets.connection system,ss_timesheets.connection,base.group_system,crud,
+access_connection_connector,ss_timesheets.connection connector,ss_timesheets.connection,group_connector,r,
+access_nonce_system,ss_timesheets.nonce system,ss_timesheets.nonce,base.group_system,r,
+access_link_system,ss_timesheets.employee_link system,ss_timesheets.employee_link,base.group_system,crud,
+access_link_connector,ss_timesheets.employee_link connector,ss_timesheets.employee_link,group_connector,r,
