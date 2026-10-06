@@ -108,7 +108,7 @@ class TestPairing(TransactionCase):
         with patch.object(type(self.conn), '_http_post', down):
             self.conn.action_unpair()
         self.assertEqual((self.conn.state, self.conn.secret), ('unpaired', False))
-        self.assertIn('niet bereikbaar', self.conn.last_message)
+        self.assertIn('not reachable', self.conn.last_message)
 
     def test_secret_never_logged(self):
         with self.assertLogs('odoo.addons.softwareservices_timesheets_connector', level='INFO') as logs:

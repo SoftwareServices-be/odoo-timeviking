@@ -3,7 +3,7 @@
     'name': 'TimeViking Timesheet Sync',
     'summary': 'Sync timesheets, projects, tasks and time off with TimeViking, the fast timesheet app',
     'description': '',                     # the Apps store and the Apps menu show static/description/index.html
-    'version': '18.0.1.2.0',
+    'version': '18.0.1.2.1',
     'category': 'Services/Timesheets',
     'author': 'Software Services BV',
     'maintainer': 'Software Services BV',

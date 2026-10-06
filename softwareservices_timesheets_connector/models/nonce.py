@@ -10,14 +10,14 @@ KEEP_MINUTES = 15
 
 class Nonce(models.Model):
     _name = 'ss_timesheets.nonce'
-    _description = 'Gebruikte nonce (TimeViking)'
+    _description = 'Used nonce (TimeViking)'
     _log_access = False
 
     key_id = fields.Char(required=True)
     nonce = fields.Char(required=True)
     seen_at = fields.Datetime(required=True, default=fields.Datetime.now, index=True)
 
-    _sql_constraints = [('key_nonce_unique', 'unique(key_id, nonce)', 'Deze nonce is al gebruikt.')]
+    _sql_constraints = [('key_nonce_unique', 'unique(key_id, nonce)', 'This nonce has already been used.')]
 
     @api.model
     def _seen(self, key_id, nonce):

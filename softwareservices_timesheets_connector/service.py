@@ -27,7 +27,7 @@ import pytz
 
 import psycopg2
 
-from odoo import fields, release
+from odoo import _, fields, release
 from odoo.exceptions import AccessError, MissingError, UserError, ValidationError
 
 _logger = logging.getLogger(__name__)
@@ -119,7 +119,7 @@ def _ids(value, name):
     if value in (None, False):
         return []
     if not isinstance(value, (list, tuple)) or not all(isinstance(i, int) and not isinstance(i, bool) for i in value):
-        raise ServiceError(400, 'bad_request', f'{name} moet een lijst van ids zijn')
+        raise ServiceError(400, 'bad_request', f'{name} must be a list of ids')
     return list(value)
 
 
@@ -127,7 +127,7 @@ def _int(value, name, required=True):
     if value in (None, False) and not required:
         return False
     if not isinstance(value, int) or isinstance(value, bool):
-        raise LineError('validation', f'{name} ontbreekt of is geen id')
+        raise LineError('validation', f'{name} is missing or not an id')
     return value
 
 
@@ -174,7 +174,7 @@ class ConnectorService:
             limit = min(int(body.get('limit') or MAX_LIMIT), MAX_LIMIT)
             offset = max(int(body.get('offset') or 0), 0)
         except (TypeError, ValueError):
-            raise ServiceError(400, 'bad_request', 'limit en offset moeten getallen zijn') from None
+            raise ServiceError(400, 'bad_request', 'limit and offset must be numbers') from None
         return limit, offset
 
     @staticmethod
@@ -185,7 +185,7 @@ class ConnectorService:
         try:
             return [('write_date', '>', fields.Datetime.to_string(fields.Datetime.to_datetime(since)))]
         except (TypeError, ValueError):
-            raise ServiceError(400, 'bad_request', 'since moet YYYY-MM-DD HH:MM:SS zijn') from None
+            raise ServiceError(400, 'bad_request', 'since must be YYYY-MM-DD HH:MM:SS') from None
 
     def _companies(self, body):
         wanted = _ids(body.get('company_ids'), 'company_ids')
@@ -208,20 +208,20 @@ class ConnectorService:
 
     def _check_employee(self, employee_id):
         if employee_id not in self._links(allowed_only=True):
-            raise LineError('employee_not_allowed', 'Deze werknemer is niet (meer) toegelaten voor TimeViking')
+            raise LineError('employee_not_allowed', 'This employee is no longer allowed for TimeViking')
         employee = self.env['hr.employee'].browse(employee_id).exists()
         if not employee or employee.company_id.id not in self.company_ids:
-            raise LineError('employee_not_allowed', 'Deze werknemer hoort niet bij een gekoppeld bedrijf')
+            raise LineError('employee_not_allowed', 'This employee does not belong to a connected company')
         return employee
 
     def _check_project(self, project_id, task_id):
         project = self.env['project.project'].search(self._project_domain() + [('id', '=', project_id)])
         if not project:
-            raise LineError('project_not_allowed', 'Dit project bestaat niet, staat geen uren toe of hoort bij een ander bedrijf')
+            raise LineError('project_not_allowed', 'This project does not exist, does not allow timesheets or belongs to another company')
         if task_id:
             task = self.env['project.task'].browse(task_id).exists()
             if not task or task.project_id != project:
-                raise LineError('validation', 'Deze taak hoort niet bij het project')
+                raise LineError('validation', 'This task does not belong to the project')
         return project
 
     def _current(self, line):
@@ -293,9 +293,9 @@ class ConnectorService:
     def _lines(self, body, key='lines'):
         lines = body.get(key)
         if not isinstance(lines, list) or not all(isinstance(x, dict) for x in lines):
-            raise ServiceError(400, 'bad_request', f'{key} moet een lijst zijn')
+            raise ServiceError(400, 'bad_request', f'{key} must be a list')
         if len(lines) > MAX_LINES:
-            raise ServiceError(413, 'too_many_lines', f'Hoogstens {MAX_LINES} regels per verzoek')
+            raise ServiceError(413, 'too_many_lines', f'At most {MAX_LINES} lines per request')
         return lines
 
     def _each(self, items, ident, work):
@@ -313,7 +313,7 @@ class ConnectorService:
             except (UserError, ValidationError, AccessError, MissingError, psycopg2.Error) as e:
                 self.env.invalidate_all()
                 message = e.args[0] if isinstance(e, Exception) and e.args else str(e)
-                _logger.info('ss_timesheets: regel geweigerd door Odoo: %s', message)
+                _logger.info('ss_timesheets: line refused by Odoo: %s', message)
                 results.append({**ref, 'error': 'validation', 'message': str(message)})
         return {'results': results}
 
@@ -326,17 +326,17 @@ class ConnectorService:
             if ref:
                 existing = Line.search([('ss_client_ref', '=', ref)], limit=1)
                 if existing:
-                    raise LineError('duplicate', 'Deze regel bestaat al', id=existing.id, write_date=_dt(existing.write_date))
+                    raise LineError('duplicate', 'This line already exists', id=existing.id, write_date=_dt(existing.write_date))
             employee = self._check_employee(_int(line.get('employee_id'), 'employee_id'))
             project_id = _int(line.get('project_id'), 'project_id')
             task_id = _int(line.get('task_id'), 'task_id', required=False)
             project = self._check_project(project_id, task_id)
             company_id = line.get('company_id') or employee.company_id.id
             if company_id not in self.company_ids or company_id != employee.company_id.id:
-                raise LineError('validation', 'Het bedrijf van de regel moet dat van de werknemer zijn')
+                raise LineError('validation', "The line's company must be the employee's company")
             hours = line.get('hours')
             if not isinstance(hours, (int, float)) or isinstance(hours, bool) or hours < 0 or hours > 24:
-                raise LineError('validation', 'hours moet tussen 0 en 24 liggen')
+                raise LineError('validation', 'hours must be between 0 and 24')
             vals = {'date': _date(line.get('date')), 'unit_amount': round(float(hours), 4), 'name': str(line.get('name') or '/')[:2000],
                     'project_id': project.id, 'task_id': task_id or False, 'employee_id': employee.id, 'company_id': company_id,
                     'ss_client_ref': ref}
@@ -352,10 +352,10 @@ class ConnectorService:
         line = self.env['account.analytic.line'].search([('id', '=', line_id), ('project_id', '!=', False),
                                                           ('company_id', 'in', self.company_ids)])
         if not line:
-            raise LineError('not_found', 'Deze regel bestaat niet (meer)')
+            raise LineError('not_found', 'This line no longer exists')
         self._check_employee(line.employee_id.id)
         if 'validated' in line._fields and line.validated:
-            raise LineError('validated', 'Deze regel is gevalideerd in Odoo', current=self._current(line))
+            raise LineError('validated', 'This line has been validated in Odoo', current=self._current(line))
         return line
 
     def timesheets_write(self, body):
@@ -363,13 +363,13 @@ class ConnectorService:
             line = self._own_line(item.get('id'), lock=True)
             expected = item.get('expected_write_date')
             if expected and _dt(line.write_date) != str(expected)[:19]:
-                raise LineError('conflict', 'De regel is in Odoo gewijzigd', current=self._current(line))
+                raise LineError('conflict', 'The line was changed in Odoo', current=self._current(line))
             values = item.get('values')
             if not isinstance(values, dict) or not values:
-                raise LineError('validation', 'values ontbreekt')
+                raise LineError('validation', 'values is missing')
             unknown = sorted(set(values) - set(WRITE_FIELDS))
             if unknown:
-                raise LineError('field_not_allowed', 'Deze velden kan de module niet schrijven: ' + ', '.join(unknown))
+                raise LineError('field_not_allowed', 'The module cannot write these fields: ' + ', '.join(unknown))
             vals = {WRITE_FIELDS[k]: v for k, v in values.items()}
             employee = self._check_employee(_int(vals['employee_id'], 'employee_id')) if 'employee_id' in vals else line.employee_id
             if 'project_id' in vals or 'task_id' in vals:
@@ -382,9 +382,9 @@ class ConnectorService:
             if 'unit_amount' in vals:
                 hours = vals['unit_amount']
                 if not isinstance(hours, (int, float)) or isinstance(hours, bool) or hours < 0 or hours > 24:
-                    raise LineError('validation', 'hours moet tussen 0 en 24 liggen')
+                    raise LineError('validation', 'hours must be between 0 and 24')
             if 'company_id' in vals and vals['company_id'] != employee.company_id.id:
-                raise LineError('validation', 'Het bedrijf van de regel moet dat van de werknemer zijn')
+                raise LineError('validation', "The line's company must be the employee's company")
             if 'name' in vals:
                 vals['name'] = str(vals['name'] or '/')[:2000]
             line.write(vals)
@@ -404,7 +404,7 @@ class ConnectorService:
         choice of the Odoo administrator, links missing from the list are removed."""
         items = body.get('links')
         if not isinstance(items, list) or not all(isinstance(x, dict) for x in items):
-            raise ServiceError(400, 'bad_request', 'links moet een lijst zijn')
+            raise ServiceError(400, 'bad_request', 'links must be a list')
         Link = self.env['ss_timesheets.employee_link']
         wanted = {}
         for item in items:
@@ -433,7 +433,7 @@ class ConnectorService:
 
     def _need(self, model):
         if model not in self.env:
-            raise ServiceError(404, 'not_installed', f'{model} bestaat niet in deze Odoo')
+            raise ServiceError(404, 'not_installed', f'{model} does not exist in this Odoo')
 
     @staticmethod
     def _day(body, key):
@@ -491,14 +491,14 @@ class ConnectorService:
         """Odoo 20: resource.calendar.get_attendances for one calendar and at most 92 days (SPEC 9 G10)."""
         Calendar = self.env['resource.calendar']
         if not hasattr(Calendar, 'get_attendances'):
-            raise ServiceError(400, 'not_supported', 'Deze Odoo kent get_attendances niet (alleen Odoo 20)')
+            raise ServiceError(400, 'not_supported', 'This Odoo has no get_attendances (Odoo 20 only)')
         calendar_id = body.get('calendar_id')
         if not isinstance(calendar_id, int) or isinstance(calendar_id, bool) or not self._allowed_calendars([calendar_id]):
-            raise ServiceError(404, 'not_found', 'Dit rooster bestaat niet of hoort bij een ander bedrijf')
+            raise ServiceError(404, 'not_found', 'This schedule does not exist or belongs to another company')
         date_from, date_to = self._day(body, 'date_from'), self._day(body, 'date_to')
         span = fields.Date.to_date(date_to) - fields.Date.to_date(date_from)
         if span < timedelta(0) or span >= timedelta(days=MAX_DATE_DAYS):
-            raise ServiceError(400, 'bad_request', f'Hoogstens {MAX_DATE_DAYS} dagen per keer')
+            raise ServiceError(400, 'bad_request', f'At most {MAX_DATE_DAYS} days at a time')
         have = self.env['resource.calendar.attendance']._fields
         wanted = body.get('fields') or list(DATE_FIELDS)
         fields_ = [f for f in DATE_FIELDS if f in wanted and f in have]
@@ -570,7 +570,7 @@ class ConnectorService:
         model = self._type_model()
         employee_id = body.get('employee_id')
         if not isinstance(employee_id, int) or isinstance(employee_id, bool) or not self._linked_employees([employee_id]):
-            raise ServiceError(403, 'employee_not_allowed', 'Deze werknemer is niet gekoppeld met TimeViking')
+            raise ServiceError(403, 'employee_not_allowed', 'This employee is not linked to TimeViking')
         company_id = body.get('company_id')
         if company_id not in self.company_ids:
             company_id = self.env['hr.employee'].browse(employee_id).company_id.id
@@ -625,7 +625,7 @@ class ConnectorService:
         except (UserError, ValidationError, MissingError, psycopg2.Error) as e:
             self.env.invalidate_all()
             message = str(e.args[0] if e.args else e)
-            _logger.info('ss_timesheets: verlof geweigerd door Odoo: %s', message)
+            _logger.info('ss_timesheets: time off refused by Odoo: %s', message)
             raise ServiceError(422, 'validation', message) from None
 
     def _allowed_employee(self, employee_id):
@@ -639,20 +639,20 @@ class ConnectorService:
         self._need('hr.leave')
         leave_id = body.get('id')
         if not isinstance(leave_id, int) or isinstance(leave_id, bool):
-            raise ServiceError(400, 'bad_request', 'id ontbreekt of is geen id')
+            raise ServiceError(400, 'bad_request', 'id is missing or not an id')
         leave = self.env['hr.leave'].browse(leave_id).exists()
         if not leave:
-            raise ServiceError(404, 'not_found', 'Dit verlof bestaat niet (meer)')
+            raise ServiceError(404, 'not_found', 'This time off no longer exists')
         employee = self._allowed_employee(leave.employee_id.id)
         return leave.with_env(self._leave_env(body, employee.company_id.id))
 
     def _leave_values(self, values, allowed):
         if not isinstance(values, dict) or not values:
-            raise ServiceError(400, 'bad_request', 'vals ontbreekt')
+            raise ServiceError(400, 'bad_request', 'vals is missing')
         have = self.env['hr.leave']._fields
         unknown = sorted(k for k in values if k not in allowed or k not in have)
         if unknown:
-            raise ServiceError(400, 'field_not_allowed', 'Deze velden kan de module niet schrijven: ' + ', '.join(unknown))
+            raise ServiceError(400, 'field_not_allowed', 'The module cannot write these fields: ' + ', '.join(unknown))
         return dict(values)
 
     def leave_create(self, body):
@@ -663,7 +663,7 @@ class ConnectorService:
         employee = self._allowed_employee(vals.get('employee_id'))
         field = self._type_field()
         if vals.get(field) not in self._allowed_types([vals.get(field)]):
-            raise ServiceError(400, 'bad_request', 'Deze verlofsoort bestaat niet of hoort bij een ander bedrijf')
+            raise ServiceError(400, 'bad_request', 'This time-off type does not exist or belongs to another company')
         Leave = self._leave_env(body, employee.company_id.id)['hr.leave']
 
         def create():
@@ -692,10 +692,10 @@ class ConnectorService:
         actions = LEAVE_ACTIONS[endpoint]
         action = body.get('action') or actions[0]
         if action not in actions or not hasattr(type(self.env['hr.leave']), action):
-            raise ServiceError(400, 'not_supported', f'{action} bestaat niet in deze Odoo')
+            raise ServiceError(400, 'not_supported', f'{action} does not exist in this Odoo')
         leave = self._own_leave(body)
         if leave.state not in LEAVE_ACTION_STATES:
-            raise ServiceError(422, 'validation', 'De dienst keurt geen verlof goed of af: dit doe je in Odoo zelf')
+            raise ServiceError(422, 'validation', 'The service does not approve or refuse time off: do that in Odoo itself')
 
         def act():
             self._approval_check(leave, action)
@@ -723,7 +723,7 @@ class ConnectorService:
         return {'key_id': key_id, 'secret': secret}
 
     def revoke(self, body):
-        self.connection._wipe('Ontkoppeld door TimeViking')
+        self.connection._wipe(_('Unpaired by TimeViking'))
         return {'ok': True}
 
 
@@ -766,7 +766,7 @@ def run(env, connection, endpoint, body):
     """Execute one endpoint for a verified request. Returns (status, payload)."""
     handler = ENDPOINTS.get(endpoint)
     if handler is None:
-        return 404, {'error': 'not_found', 'message': 'Onbekend endpoint'}
+        return 404, {'error': 'not_found', 'message': 'Unknown endpoint'}
     try:
         return 200, handler(ConnectorService(env, connection), body)
     except ServiceError as e:
