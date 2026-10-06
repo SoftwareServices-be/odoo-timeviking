@@ -42,29 +42,29 @@ class ServiceError(Exception):
 
 class Connection(models.Model):
     _name = 'ss_timesheets.connection'
-    _description = 'Koppeling met TimeViking'
+    _description = 'Connection with TimeViking'
     _rec_name = 'service_url'
 
-    service_url = fields.Char('Service-URL', required=True, default=lambda self: self._default_service_url(),
-                              help='Het adres van TimeViking, bijvoorbeeld https://app.voorbeeld.be')
-    odoo_url = fields.Char('Adres van deze Odoo', default=lambda self: self._default_odoo_url(),
-                           help='Waarop de dienst deze Odoo bereikt. Standaard web.base.url.')
-    pair_code = fields.Char('Koppelcode', copy=False, groups=SYSTEM)
-    mode = fields.Selection([('push', 'Push: de dienst roept Odoo aan')], default='push', required=True, string='Modus')
-    state = fields.Selection([('unpaired', 'Niet gekoppeld'), ('paired', 'Gekoppeld')], default='unpaired', required=True,
+    service_url = fields.Char('Service URL', required=True, default=lambda self: self._default_service_url(),
+                              help='The address of TimeViking, for example https://app.example.com')
+    odoo_url = fields.Char('Address of this Odoo', default=lambda self: self._default_odoo_url(),
+                           help='Where the service reaches this Odoo. Defaults to web.base.url.')
+    pair_code = fields.Char('Pairing code', copy=False, groups=SYSTEM)
+    mode = fields.Selection([('push', 'Push: the service calls Odoo')], default='push', required=True, string='Mode')
+    state = fields.Selection([('unpaired', 'Not paired'), ('paired', 'Paired')], default='unpaired', required=True,
                              readonly=True, string='Status')
-    company_ids = fields.Many2many('res.company', string='Bedrijven', default=lambda self: self.env['res.company'].search([]),
-                                   help='De bedrijven waarvan de dienst projecten, werknemers en uren mag zien.')
-    paired_at = fields.Datetime('Gekoppeld sinds', readonly=True, copy=False)
-    connection_ref = fields.Char('Verbinding', readonly=True, copy=False)
-    last_message = fields.Char('Laatste melding', readonly=True, copy=False)
+    company_ids = fields.Many2many('res.company', string='Companies', default=lambda self: self.env['res.company'].search([]),
+                                   help='The companies whose projects, employees and timesheets the service may see.')
+    paired_at = fields.Datetime('Paired since', readonly=True, copy=False)
+    connection_ref = fields.Char('Connection', readonly=True, copy=False)
+    last_message = fields.Char('Last message', readonly=True, copy=False)
     # het geheim: alleen voor de systeemgroep, nooit in exports of logs
     key_id = fields.Char(readonly=True, copy=False, groups=SYSTEM)
     secret = fields.Char(readonly=True, copy=False, groups=SYSTEM)
     prev_key_id = fields.Char(readonly=True, copy=False, groups=SYSTEM)
     prev_secret = fields.Char(readonly=True, copy=False, groups=SYSTEM)
     prev_valid_until = fields.Datetime(readonly=True, copy=False, groups=SYSTEM)
-    link_count = fields.Integer(compute='_compute_link_count', string='Gekoppelde werknemers')
+    link_count = fields.Integer(compute='_compute_link_count', string='Linked employees')
 
     def _default_service_url(self):
         return self.env['ir.config_parameter'].sudo().get_str('ss_timesheets.default_service_url') or 'https://'
@@ -121,7 +121,7 @@ class Connection(models.Model):
         rec.write({'prev_key_id': rec.key_id, 'prev_secret': rec.secret,
                    'prev_valid_until': fields.Datetime.now() + timedelta(minutes=GRACE_MINUTES),
                    'key_id': key_id, 'secret': secret})
-        _logger.info('ss_timesheets: geheim vernieuwd (nieuwe key_id %s)', key_id)
+        _logger.info('ss_timesheets: secret rotated (new key_id %s)', key_id)
         return key_id, secret
 
     def _wipe(self, message):
@@ -134,7 +134,7 @@ class Connection(models.Model):
         url = (url or '').strip().rstrip('/')
         insecure = self.env['ir.config_parameter'].sudo().get_str('ss_timesheets.allow_insecure') in ('1', 'True', 'true')
         if not (url.startswith('https://') or (insecure and url.startswith('http://'))) or len(url) <= len('https://'):
-            raise UserError(_('De service-URL moet met https:// beginnen.'))
+            raise UserError(_('The service URL must start with https://.'))
         return url
 
     def _post(self, path, body, signed=True):
@@ -147,18 +147,18 @@ class Connection(models.Model):
         secret = None
         if signed:
             if not (rec.key_id and rec.secret):
-                raise UserError(_('Deze Odoo is niet gekoppeld.'))
+                raise UserError(_('This Odoo is not paired.'))
             secret = ssts.secret_bytes(rec.secret)
             hdrs.update(ssts.headers(secret, rec.key_id, ssts.TO_APP, path, raw))
         try:
             res = self._http_post(url + path, raw, hdrs)
         except requests.RequestException as e:
-            raise ServiceError(_('Kan %(url)s niet bereiken: %(error)s', url=url, error=type(e).__name__)) from None
+            raise ServiceError(_('Cannot reach %(url)s: %(error)s', url=url, error=type(e).__name__)) from None
         if signed and res.status_code != 401:
             try:
                 ssts.verify(secret, ssts.TO_ODOO, path, res.content or b'', res.headers)
             except ssts.SignatureError:
-                raise ServiceError(_('Het antwoord van %(url)s is niet geldig ondertekend.', url=url)) from None
+                raise ServiceError(_('The answer from %(url)s is not validly signed.', url=url)) from None
         try:
             data = res.json()
         except ValueError:
@@ -199,7 +199,7 @@ class Connection(models.Model):
             vals['company_ids'] = [(6, 0, companies.ids)]
         if vals:
             connector.write(vals)
-            _logger.info('ss_timesheets: rechten van de technische gebruiker bijgewerkt (%s)', ', '.join(sorted(vals)))
+            _logger.info('ss_timesheets: technical user permissions updated (%s)', ', '.join(sorted(vals)))
         return connector
 
     @api.model
@@ -221,7 +221,7 @@ class Connection(models.Model):
         rec = self.sudo()
         code = normalize_code(rec.pair_code)
         if len(code) != 12:
-            raise UserError(_('Plak de koppelcode van 12 tekens uit TimeViking.'))
+            raise UserError(_('Paste the 12-character pairing code from TimeViking.'))
         companies = rec.company_ids or self.env['res.company'].sudo().search([])
         body = {'code': f'{code[:4]}-{code[4:8]}-{code[8:]}', 'odoo_url': (rec.odoo_url or self._default_odoo_url()).rstrip('/'),
                 **self._server_info(), 'companies': [{'id': c.id, 'name': c.name} for c in companies], 'mode': rec.mode,
@@ -231,16 +231,17 @@ class Connection(models.Model):
         except ServiceError as e:
             raise UserError(str(e)) from None
         if status == 404:
-            raise UserError(_('De koppelcode is ongeldig of verlopen. Maak een nieuwe in TimeViking.'))
+            raise UserError(_('The pairing code is invalid or expired. Create a new one in TimeViking.'))
         if status != 200 or not (data.get('key_id') and data.get('secret')):
-            raise UserError(_('Koppelen mislukt: %(error)s', error=data.get('message') or data.get('error') or f'HTTP {status}'))
+            error = data.get('message') or data.get('error') or 'HTTP %s' % status
+            raise UserError(_('Pairing failed: %(error)s', error=error))
         ssts.secret_bytes(data['secret'])                                    # moet geldige base64 zijn
         self._ensure_connector()
         rec.write({'state': 'paired', 'key_id': data['key_id'], 'secret': data['secret'], 'pair_code': False,
                    'connection_ref': data.get('connection_id'), 'paired_at': fields.Datetime.now(), 'company_ids': [(6, 0, companies.ids)],
                    'prev_key_id': False, 'prev_secret': False, 'prev_valid_until': False,
-                   'last_message': _('Gekoppeld met %(url)s', url=rec.service_url)})
-        _logger.info('ss_timesheets: gekoppeld met %s (key_id %s)', rec.service_url, data['key_id'])
+                   'last_message': _('Paired with %(url)s', url=rec.service_url)})
+        _logger.info('ss_timesheets: paired with %s (key_id %s)', rec.service_url, data['key_id'])
         return True
 
     def action_test(self):
@@ -250,8 +251,9 @@ class Connection(models.Model):
         except ServiceError as e:
             raise UserError(str(e)) from None
         if status != 200 or not data.get('ok'):
-            raise UserError(_('De dienst weigerde de test: %(error)s', error=data.get('error') or f'HTTP {status}'))
-        message = _('Verbinding in orde met %(name)s', name=data.get('tenant_name') or self.sudo().service_url)
+            error = data.get('error') or 'HTTP %s' % status
+            raise UserError(_('The service refused the test: %(error)s', error=error))
+        message = _('Connection OK with %(name)s', name=data.get('tenant_name') or self.sudo().service_url)
         self.sudo().last_message = message
         return {'type': 'ir.actions.client', 'tag': 'display_notification',
                 'params': {'title': _('TimeViking'), 'message': message, 'type': 'success', 'sticky': False}}
@@ -259,21 +261,21 @@ class Connection(models.Model):
     def action_unpair(self):
         """Wipe the secret here and tell the service (best effort, SPEC 5.1 §8)."""
         self.ensure_one()
-        message = _('Ontkoppeld')
+        message = _('Unpaired')
         if self.sudo().key_id and self.sudo().secret:
             try:
-                status, _data = self._post('/api/module/v1/revoke', {})
+                status, answer = self._post('/api/module/v1/revoke', {})
                 if status != 200:
-                    message = _('Ontkoppeld; de dienst antwoordde HTTP %(status)s en merkt het bij het volgende verzoek', status=status)
+                    message = _('Unpaired; the service answered HTTP %(status)s and will notice at the next request', status=status)
             except (ServiceError, UserError) as e:
-                message = _('Ontkoppeld; de dienst was niet bereikbaar (%(error)s) en merkt het bij het volgende verzoek', error=str(e))
+                message = _('Unpaired; the service was not reachable (%(error)s) and will notice at the next request', error=str(e))
         self._wipe(message)
-        _logger.info('ss_timesheets: ontkoppeld')
+        _logger.info('ss_timesheets: unpaired')
         return True
 
     def action_open_links(self):
         return {'type': 'ir.actions.act_window', 'res_model': 'ss_timesheets.employee_link', 'view_mode': 'list',
-                'name': _('Gekoppelde werknemers'), 'target': 'current'}
+                'name': _('Linked employees'), 'target': 'current'}
 
     @api.model
     def _cron_cleanup(self):
