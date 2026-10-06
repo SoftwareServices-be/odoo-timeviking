@@ -2,6 +2,7 @@
 import ast
 import importlib.util
 import io
+import json
 import re
 import struct
 import subprocess
@@ -147,7 +148,7 @@ def test_manifest_metadata():
     assert man['license'] == 'LGPL-3' and man['price'] == 0 and man['currency'] == 'EUR'
     assert man['images'] == ['static/description/banner.png']
     assert man['category'] == 'Services/Timesheets' and man['author'] == 'Software Services BV'
-    assert man['support'] == 'info@softwareservices.be' and man['website'].startswith('https://')
+    assert man['support'] == __import__('json').loads((ROOT / 'product.json').read_text())['SUPPORT_EMAIL'] and man['website'].startswith('https://')
     assert len(man['name']) <= build.APP_NAME_MAX and 'odoo' not in man['name'].lower()
     assert 'software services' not in man['name'].lower() and 'imesheet' in man['name']
     assert 'imesheet' in man['summary'] and man['application'] is False
