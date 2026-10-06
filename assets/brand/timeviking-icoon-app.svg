@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="TimeViking">
+<rect width="48" height="48" rx="11" fill="#16202e"/><path d="M24 6A18 18 0 0 0 24 42Z" fill="#2f6fb0"/>
+<path d="M24 6A18 18 0 0 1 24 42Z" fill="#d9a441"/>
+<path d="M15.52 13.89L24 24L32.48 13.89" fill="none" stroke="#ffffff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="24" cy="24" r="4.6" fill="#16202e"/>
+</svg>

@@ -1,0 +1,9 @@
+# build output (tools/build.py dist|zip)
+/dist/
+__pycache__/
+*.py[co]
+.pytest_cache/
+.venv/
+*.egg-info/
+.DS_Store
+/assets/_render_*

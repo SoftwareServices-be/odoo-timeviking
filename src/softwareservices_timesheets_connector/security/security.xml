@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- SPEC 5.1 §6: de groep van de koppeling, met precies de rechten voor projecten, taken en alle timesheets -->
+    <record id="group_connector" model="res.groups">
+        <field name="name">{{PRODUCT_NAME}}: koppeling</field>
+        <field name="implied_ids" eval="[(4, ref('project.group_project_user')), (4, ref('hr_timesheet.group_hr_timesheet_approver'))]"/>
+        <field name="comment">Technische groep van de module {{PRODUCT_NAME}}. Niet aan mensen geven.</field>
+    </record>
+
+    <!-- De technische gebruiker: inactief (geen login), zonder wachtwoord en zonder Settings-rechten.
+         Hij staat als maker op de regels die de dienst schrijft. -->
+    <record id="user_connector" model="res.users" context="{'no_reset_password': True}">
+        <field name="name">{{PRODUCT_NAME}}</field>
+        <field name="login">ss_timesheets_connector</field>
+        <field name="active" eval="False"/>
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_user'), ref('group_connector')])]"/>
+    </record>
+</odoo>

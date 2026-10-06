@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_connection_form" model="ir.ui.view">
+        <field name="name">ss_timesheets.connection.form</field>
+        <field name="model">ss_timesheets.connection</field>
+        <field name="arch" type="xml">
+            <form string="{{PRODUCT_NAME}}" create="false" delete="false">
+                <header>
+                    <button name="action_pair" type="object" string="Koppelen" class="btn-primary" invisible="state == 'paired'"/>
+                    <button name="action_test" type="object" string="Test" invisible="state != 'paired'"/>
+                    <button name="action_unpair" type="object" string="Ontkoppelen" invisible="state != 'paired'"
+                            confirm="De dienst kan daarna geen uren meer in Odoo schrijven. Opnieuw koppelen vraagt een nieuwe koppelcode. Doorgaan?"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_links" type="object" class="oe_stat_button" icon="fa-users">
+                            <field name="link_count" widget="statinfo" string="Werknemers"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>{{PRODUCT_NAME}}</h1>
+                    </div>
+                    <div class="alert alert-success" role="status" invisible="state != 'paired'">
+                        Gekoppeld met <field name="service_url" readonly="1" class="oe_inline"/>
+                        sinds <field name="paired_at" readonly="1" class="oe_inline"/>.
+                    </div>
+                    <div class="alert alert-info" role="status" invisible="state == 'paired'">
+                        Maak in {{PRODUCT_NAME}} › Instellingen › Odoo een koppelcode en plak die hieronder.
+                        De code is 15 minuten geldig.
+                    </div>
+                    <group>
+                        <group string="Verbinding">
+                            <field name="service_url" readonly="state == 'paired'" placeholder="https://..."/>
+                            <field name="odoo_url" readonly="state == 'paired'"/>
+                            <field name="pair_code" invisible="state == 'paired'" placeholder="XXXX-XXXX-XXXX"/>
+                            <field name="mode" readonly="1"/>
+                        </group>
+                        <group string="Bereik">
+                            <field name="company_ids" widget="many2many_tags" readonly="state == 'paired'"/>
+                            <field name="connection_ref" invisible="state != 'paired'"/>
+                            <field name="last_message"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_employee_link_list" model="ir.ui.view">
+        <field name="name">ss_timesheets.employee_link.list</field>
+        <field name="model">ss_timesheets.employee_link</field>
+        <field name="arch" type="xml">
+            <list string="Gekoppelde werknemers" editable="bottom" create="false">
+                <field name="employee_id" readonly="1"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="external_user"/>
+                <field name="linked_at"/>
+                <field name="allowed" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_employee_link_search" model="ir.ui.view">
+        <field name="name">ss_timesheets.employee_link.search</field>
+        <field name="model">ss_timesheets.employee_link</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <filter name="not_allowed" string="Niet toegelaten" domain="[('allowed', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_open_connection" model="ir.actions.server">
+        <field name="name">{{PRODUCT_NAME}}</field>
+        <field name="model_id" ref="model_ss_timesheets_connection"/>
+        <field name="state">code</field>
+        <field name="code">action = model.action_open()</field>
+        <field name="groups_id" eval="[(4, ref('base.group_system'))]"/>
+    </record>
+
+    <record id="action_employee_links" model="ir.actions.act_window">
+        <field name="name">Gekoppelde werknemers</field>
+        <field name="res_model">ss_timesheets.employee_link</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <menuitem id="menu_root" name="{{PRODUCT_NAME}}" parent="base.menu_administration" sequence="90"
+              groups="base.group_system"/>
+    <menuitem id="menu_connection" name="Koppeling" parent="menu_root" action="action_open_connection" sequence="1"/>
+    <menuitem id="menu_employee_links" name="Gekoppelde werknemers" parent="menu_root" action="action_employee_links" sequence="2"/>
+</odoo>

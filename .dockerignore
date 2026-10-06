@@ -1,0 +1,7 @@
+# Used when the main project builds its image with this repo as the named context "odoo_module".
+.git
+dist
+tests
+assets
+**/__pycache__
+**/*.pyc

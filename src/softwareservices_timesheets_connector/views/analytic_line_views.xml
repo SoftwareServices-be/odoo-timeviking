@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- SPEC 5.1 M5: zien welke regels via de koppeling zijn gemaakt -->
+    <record id="hr_timesheet_line_search" model="ir.ui.view">
+        <field name="name">account.analytic.line.search.ss_timesheets</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search"/>
+        <field name="arch" type="xml">
+            <filter name="mine" position="after">
+                <filter name="via_ss_timesheets" string="Via {{PRODUCT_NAME}}" domain="[('ss_client_ref', '!=', False)]"/>
+            </filter>
+        </field>
+    </record>
+</odoo>

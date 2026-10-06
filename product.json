@@ -1,0 +1,12 @@
+{
+  "_comment": "The one place for names and links. tools/build.py fills the {{...}} placeholders in src/ with these values; a value may use other placeholders. APP_NAME is the name in the Odoo Apps store: max 25 characters, no company name, no 'Odoo'. NAME_FINAL false makes tools/build.py release refuse to write the store branches. WEBSITE is still the company site: set it to the TimeViking Odoo landing page before publishing.",
+  "PRODUCT_NAME": "TimeViking",
+  "APP_NAME": "{{PRODUCT_NAME}} Timesheet Sync",
+  "NAME_FINAL": true,
+  "SUMMARY": "Sync timesheets, projects, tasks and time off with {{PRODUCT_NAME}}, the fast timesheet app",
+  "WEBSITE": "https://softwareservices.be",
+  "SUPPORT_EMAIL": "info@softwareservices.be",
+  "AUTHOR": "Software Services BV",
+  "CATEGORY": "Services/Timesheets",
+  "MODULE_VERSION": "1.2.0"
+}

@@ -1,0 +1,22 @@
+# pip install pre-commit && pre-commit install
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-json
+      - id: check-xml
+      - id: check-added-large-files
+        args: [--maxkb=600]
+  - repo: https://github.com/PyCQA/flake8
+    rev: 7.1.1
+    hooks:
+      - id: flake8
+  - repo: local
+    hooks:
+      - id: build-check
+        name: tools/build.py check (the build is valid for all Odoo versions)
+        entry: python3 tools/build.py check --no-branches
+        language: system
+        pass_filenames: false
