@@ -404,7 +404,8 @@ msgid "User in {{PRODUCT_NAME}}"
 msgstr "Gebruiker in {{PRODUCT_NAME}}"
 
 #. module: softwareservices_timesheets_connector
-#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.hr_timesheet_line_search
+#: model:ir.actions.act_window,name:softwareservices_timesheets_connector.action_lines_via_connector
+#: model:ir.ui.menu,name:softwareservices_timesheets_connector.menu_lines_via_connector
 msgid "Via {{PRODUCT_NAME}}"
 msgstr "Via {{PRODUCT_NAME}}"
 
