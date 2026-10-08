@@ -1,143 +1,292 @@
 <!-- Odoo Apps store description. {{...}} is filled in from product.json by tools/build.py.
-     Store rules: English, no JavaScript, no forms or widgets, images only from this folder, no external links
-     (the link to the service is the `website` field of the manifest; here it is plain text). -->
-<section class="oe_container">
-    <div class="oe_row oe_spaced">
-        <div class="oe_span12">
-            <h2 class="oe_slogan" style="color:#16202e;font-weight:700;">{{APP_NAME}}</h2>
-            <h3 class="oe_slogan" style="color:#4b5563;">Fast weekly timesheets for your whole team, written straight into Odoo Timesheets</h3>
-            <p class="text-center" style="font-size:16px;color:#374151;margin-top:16px;">
-                This free module connects your Odoo to <b>{{PRODUCT_NAME}}</b>, an online timesheet service.
-                Your team logs hours in a visual week calendar on the web or on their phone;
-                the hours arrive in Odoo as timesheet lines on your projects and tasks.
+     Store rules: no JavaScript, no forms or widgets, no external CSS or fonts, images only from this folder
+     (relative paths), inline styles and Bootstrap classes only. The only web links go to {{WEBSITE}}. -->
+
+<!-- HERO -->
+<section class="oe_container" style="background:#16202e;padding:40px 16px 32px;border-radius:12px;">
+    <div class="row" style="margin:0;">
+        <div class="col-lg-6" style="padding:12px;">
+            <p style="color:#d9a066;font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:13px;margin-bottom:8px;">Free connector · Odoo 18, 19 and 20</p>
+            <h1 style="color:#ffffff;font-weight:800;font-size:34px;line-height:1.2;margin:0 0 14px;">Weekly timesheets your team actually fills in, straight into Odoo</h1>
+            <p style="color:#c8d3e0;font-size:17px;line-height:1.6;">
+                {{APP_NAME}} connects Odoo Timesheets to <b style="color:#ffffff;">{{PRODUCT_NAME}}</b>, a fast web and
+                mobile timesheet app. Your team logs hours in a visual week calendar; every hour arrives in Odoo as a
+                timesheet line on the right project and task.
             </p>
-            <p class="text-center" style="margin-top:12px;">
-                <span style="display:inline-block;background:#e8f0f9;color:#245a91;border-radius:16px;padding:4px 14px;margin:4px;font-weight:600;">Free connector</span>
-                <span style="display:inline-block;background:#eef1f5;color:#16202e;border-radius:16px;padding:4px 14px;margin:4px;">Odoo 18, 19 and 20</span>
-                <span style="display:inline-block;background:#eef1f5;color:#16202e;border-radius:16px;padding:4px 14px;margin:4px;">Community and Enterprise</span>
-            </p>
-            <div class="alert alert-info" style="margin-top:20px;">
-                <b>Requires a {{PRODUCT_NAME}} account.</b> This connector is free. It needs an account on
-                {{PRODUCT_NAME}} ({{WEBSITE}}), a separate web and mobile app for timesheets with its own subscription;
-                see the website for the plans. The module only sends data to it after an administrator pairs Odoo
-                with that account.
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="oe_container" style="background:#f7f9fb;padding:24px 0;">
-    <div class="oe_row oe_spaced">
-        <div class="oe_span12">
-            <h2 class="oe_slogan" style="color:#16202e;">What your team gets</h2>
-        </div>
-        <div class="row" style="margin:0 12px;">
-            <div class="col-md-4" style="padding:12px;">
-                <div style="border:1px solid #e2e6ec;border-radius:10px;background:#ffffff;padding:18px;height:100%;">
-                    <h4 style="color:#2f6fb0;">Log hours in seconds</h4>
-                    <p>Type <code>2h30 ABC login bug</code> or <code>9-12:30 #website meeting</code> and the project, task and
-                        duration fill themselves in. Or start a timer, or copy last week in one click.</p>
-                </div>
-            </div>
-            <div class="col-md-4" style="padding:12px;">
-                <div style="border:1px solid #e2e6ec;border-radius:10px;background:#ffffff;padding:18px;height:100%;">
-                    <h4 style="color:#2f6fb0;">A visual week calendar</h4>
-                    <p>Drag tasks into the week, stretch a block to change its duration, and see at a glance how each day
-                        compares with the planned hours. A grid view is there for those who prefer rows.</p>
-                </div>
-            </div>
-            <div class="col-md-4" style="padding:12px;">
-                <div style="border:1px solid #e2e6ec;border-radius:10px;background:#ffffff;padding:18px;height:100%;">
-                    <h4 style="color:#2f6fb0;">Excel and PDF exports</h4>
-                    <p>Monthly timesheets for customers or payroll in Excel or PDF. Design your own PDF layout with the
-                        drag-and-drop template editor: logo, colours, tables, signature.</p>
-                </div>
-            </div>
-            <div class="col-md-4" style="padding:12px;">
-                <div style="border:1px solid #e2e6ec;border-radius:10px;background:#ffffff;padding:18px;height:100%;">
-                    <h4 style="color:#2f6fb0;">Schedules and time off</h4>
-                    <p>Work schedules and public holidays set the daily target. With Odoo Time Off installed, employees see
-                        their balance and request time off; managers approve it in Odoo as usual.</p>
-                </div>
-            </div>
-            <div class="col-md-4" style="padding:12px;">
-                <div style="border:1px solid #e2e6ec;border-radius:10px;background:#ffffff;padding:18px;height:100%;">
-                    <h4 style="color:#2f6fb0;">On the phone too</h4>
-                    <p>An installable mobile web app for logging hours on the road or straight after a meeting.</p>
-                </div>
-            </div>
-            <div class="col-md-4" style="padding:12px;">
-                <div style="border:1px solid #e2e6ec;border-radius:10px;background:#ffffff;padding:18px;height:100%;">
-                    <h4 style="color:#2f6fb0;">Simple to roll out</h4>
-                    <p>Invite your colleagues, link them to their Odoo employee and they can start. Weeks can be
-                        submitted and approved before they count.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="oe_container">
-    <div class="oe_row oe_spaced">
-        <div class="oe_span12">
-            <h2 class="oe_slogan" style="color:#16202e;">What the module does in Odoo</h2>
-        </div>
-        <div class="row" style="margin:0 12px;">
-            <div class="col-md-6" style="padding:12px;">
-                <ul style="font-size:15px;line-height:1.7;">
-                    <li><b>No API key to manage:</b> paste a pairing code from the service and you are connected.</li>
-                    <li><b>You decide the scope:</b> choose the companies, and allow or block each employee.</li>
-                    <li><b>Only what is needed:</b> read projects, tasks and employees; write timesheet lines for allowed employees.
-                        There is no generic access to your database.</li>
-                    <li><b>Signed requests</b> (HMAC-SHA256 with timestamp and nonce) in both directions.</li>
-                    <li><b>Time Off (optional):</b> schedules, public holidays, allocations, balances and time-off requests.
-                        Approving and refusing stay in Odoo.</li>
-                    <li>Unpair at any time from the same screen.</li>
-                </ul>
-            </div>
-            <div class="col-md-6" style="padding:12px;text-align:center;">
-                <img src="screenshot_1.png" alt="The connection screen in Odoo, paired with the service" style="max-width:100%;border:1px solid #e2e6ec;border-radius:8px;"/>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="oe_container" style="background:#f7f9fb;padding:24px 0;">
-    <div class="oe_row oe_spaced">
-        <div class="oe_span12">
-            <h2 class="oe_slogan" style="color:#16202e;">Linked employees</h2>
-            <p style="text-align:center;font-size:15px;">See who is linked, and switch off an employee with one click.</p>
-            <div class="oe_demo oe_screenshot" style="text-align:center;">
-                <img src="screenshot_2.png" alt="List of linked employees with an Allowed switch" style="max-width:100%;border:1px solid #e2e6ec;border-radius:8px;"/>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="oe_container" style="background:#f7f9fb;padding:24px 0;">
-    <div class="oe_row oe_spaced">
-        <div class="oe_span12">
-            <h2 class="oe_slogan" style="color:#16202e;">Get started in four steps</h2>
-            <ol style="font-size:15px;line-height:1.8;max-width:760px;margin:0 auto;">
-                <li>Create an account on {{PRODUCT_NAME}} ({{WEBSITE}}).</li>
-                <li>Install this module in your Odoo (it needs Project and Timesheets; Time Off is optional).</li>
-                <li>In the service, open Settings › Odoo and create a pairing code.</li>
-                <li>In Odoo, open Settings › {{PRODUCT_NAME}}, paste the code, pick your companies and allow your employees.</li>
-            </ol>
-            <p class="text-center" style="margin-top:16px;color:#4b5563;">
-                Works on your own server and on Odoo.sh. Odoo Online does not allow custom modules; there the service can
-                connect with an API key instead.
+            <p style="margin-top:18px;">
+                <span style="display:inline-block;background:#2f6fb0;color:#ffffff;border-radius:16px;padding:5px 14px;margin:3px;font-weight:600;">Two-way sync</span>
+                <span style="display:inline-block;background:#24344a;color:#ffffff;border-radius:16px;padding:5px 14px;margin:3px;">Community and Enterprise</span>
+                <span style="display:inline-block;background:#24344a;color:#ffffff;border-radius:16px;padding:5px 14px;margin:3px;">Time Off aware</span>
+                <span style="display:inline-block;background:#24344a;color:#ffffff;border-radius:16px;padding:5px 14px;margin:3px;">EN · NL · FR · DE</span>
             </p>
         </div>
+        <div class="col-lg-6" style="padding:12px;text-align:center;">
+            <img src="screenshot_en_calendar.jpg" alt="The week calendar in {{PRODUCT_NAME}}" class="img-fluid" style="max-width:100%;height:auto;border-radius:8px;box-shadow:0 8px 28px rgba(0,0,0,.35);"/>
+        </div>
     </div>
 </section>
 
-<section class="oe_container">
-    <div class="oe_row oe_spaced">
-        <div class="oe_span12 text-center">
-            <h2 class="oe_slogan" style="color:#16202e;">Questions?</h2>
-            <p style="font-size:15px;">Mail <a href="mailto:{{SUPPORT_EMAIL}}">{{SUPPORT_EMAIL}}</a>.</p>
-            <p style="color:#6b7280;">Made by {{AUTHOR}}. The module is open source (LGPL-3).</p>
+<section class="oe_container" style="padding:20px 0 0;">
+    <div class="alert alert-info" style="margin:0 12px;font-size:15px;">
+        <b>Requires a {{PRODUCT_NAME}} account.</b> This module is free. It connects to {{PRODUCT_NAME}}, a separate
+        online service with its own plans (free for up to 3 users; see <a href="{{WEBSITE}}/en/pricing" target="_blank">the plans</a>).
+        No data leaves your Odoo until an administrator pairs it with that account.
+    </div>
+</section>
+
+<!-- KEY BENEFITS -->
+<section class="oe_container" style="padding:32px 0 8px;">
+    <h2 style="text-align:center;color:#16202e;font-weight:700;margin-bottom:20px;">Why teams use it</h2>
+    <div class="row" style="margin:0 6px;">
+        <div class="col-md-6 col-lg-3" style="padding:8px;">
+            <div style="border:1px solid #e2e6ec;border-radius:10px;padding:18px;height:100%;background:#ffffff;">
+                <h4 style="color:#2f6fb0;font-size:17px;font-weight:700;">Seconds per entry</h4>
+                <p style="margin:0;color:#374151;">Type <code>2h30 ABC login bug</code>: project, task and duration fill themselves in.</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3" style="padding:8px;">
+            <div style="border:1px solid #e2e6ec;border-radius:10px;padding:18px;height:100%;background:#ffffff;">
+                <h4 style="color:#2f6fb0;font-size:17px;font-weight:700;">Odoo stays the source</h4>
+                <p style="margin:0;color:#374151;">Projects, tasks and employees come from Odoo; hours go back as normal timesheet lines.</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3" style="padding:8px;">
+            <div style="border:1px solid #e2e6ec;border-radius:10px;padding:18px;height:100%;background:#ffffff;">
+                <h4 style="color:#2f6fb0;font-size:17px;font-weight:700;">No API keys per user</h4>
+                <p style="margin:0;color:#374151;">One pairing code for the whole company, signed requests, scope you choose.</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3" style="padding:8px;">
+            <div style="border:1px solid #e2e6ec;border-radius:10px;padding:18px;height:100%;background:#ffffff;">
+                <h4 style="color:#2f6fb0;font-size:17px;font-weight:700;">Desk and phone</h4>
+                <p style="margin:0;color:#374151;">Week calendar on the desktop, an installable mobile web app on the road.</p>
+            </div>
         </div>
     </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="oe_container" style="background:#f7f9fb;padding:32px 12px;border-radius:12px;margin-top:24px;">
+    <h2 style="text-align:center;color:#16202e;font-weight:700;margin-bottom:20px;">How it works</h2>
+    <div class="row" style="margin:0;">
+        <div class="col-md-6 col-lg-3" style="padding:8px;">
+            <p style="font-size:28px;font-weight:800;color:#b5651d;margin:0;">1</p>
+            <p style="color:#374151;"><b>Create an account</b> on {{PRODUCT_NAME}} and invite your colleagues.</p>
+        </div>
+        <div class="col-md-6 col-lg-3" style="padding:8px;">
+            <p style="font-size:28px;font-weight:800;color:#b5651d;margin:0;">2</p>
+            <p style="color:#374151;"><b>Install this module</b> in Odoo (needs Project and Timesheets; Time Off is optional).</p>
+        </div>
+        <div class="col-md-6 col-lg-3" style="padding:8px;">
+            <p style="font-size:28px;font-weight:800;color:#b5651d;margin:0;">3</p>
+            <p style="color:#374151;"><b>Pair:</b> create a code in {{PRODUCT_NAME}} under Settings › Odoo, paste it in Odoo under Settings › {{PRODUCT_NAME}}.</p>
+        </div>
+        <div class="col-md-6 col-lg-3" style="padding:8px;">
+            <p style="font-size:28px;font-weight:800;color:#b5651d;margin:0;">4</p>
+            <p style="color:#374151;"><b>Choose the scope:</b> pick the companies and allow employees. Hours start flowing both ways.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="oe_container" style="padding:36px 0 8px;">
+    <div class="row" style="margin:0;align-items:center;">
+        <div class="col-lg-5" style="padding:12px;">
+            <h3 style="color:#16202e;font-weight:700;">A visual week calendar</h3>
+            <p style="color:#374151;font-size:15px;line-height:1.6;">Drag tasks from the sidebar into the week, stretch a block to change its duration and see at a glance
+                how each day compares with the planned hours from the work schedule. Recently used tasks are one click away,
+                and last week can be copied in one go.</p>
+        </div>
+        <div class="col-lg-7" style="padding:12px;">
+            <img src="screenshot_en_calendar.jpg" alt="Week calendar with coloured blocks per project" class="img-fluid" style="max-width:100%;height:auto;border:1px solid #e2e6ec;border-radius:8px;"/>
+        </div>
+    </div>
+    <div class="row" style="margin:0;align-items:center;">
+        <div class="col-lg-7 order-2 order-lg-1" style="padding:12px;">
+            <img src="screenshot_en_grid.jpg" alt="Grid view with a row per task and a column per day" class="img-fluid" style="max-width:100%;height:auto;border:1px solid #e2e6ec;border-radius:8px;"/>
+        </div>
+        <div class="col-lg-5 order-1 order-lg-2" style="padding:12px;">
+            <h3 style="color:#16202e;font-weight:700;">Or a grid, if you prefer rows</h3>
+            <p style="color:#374151;font-size:15px;line-height:1.6;">One row per project or task, one column per day, totals per day and per week. Submit the week for
+                approval when it is complete.</p>
+        </div>
+    </div>
+    <div class="row" style="margin:0;align-items:center;">
+        <div class="col-lg-5" style="padding:12px;">
+            <h3 style="color:#16202e;font-weight:700;">Quick entry in plain language</h3>
+            <p style="color:#374151;font-size:15px;line-height:1.6;"><code>2h30 ABC fix login bug</code>, <code>9-12:30 #website meeting</code> or
+                <code>8h: 3h ABC, rest support</code>: the project, task, time and description are recognised. A timer is there too.</p>
+        </div>
+        <div class="col-lg-7" style="padding:12px;">
+            <img src="screenshot_en_quick_entry.jpg" alt="Quick entry field that understands durations and project codes" class="img-fluid" style="max-width:100%;height:auto;border:1px solid #e2e6ec;border-radius:8px;"/>
+        </div>
+    </div>
+    <div class="row" style="margin:0;align-items:center;">
+        <div class="col-lg-7 order-2 order-lg-1" style="padding:12px;">
+            <img src="screenshot_en_mobile.jpg" alt="Mobile web app: today and the week" class="img-fluid" style="max-width:100%;height:auto;border-radius:8px;"/>
+        </div>
+        <div class="col-lg-5 order-1 order-lg-2" style="padding:12px;">
+            <h3 style="color:#16202e;font-weight:700;">On the phone</h3>
+            <p style="color:#374151;font-size:15px;line-height:1.6;">An installable mobile web app: start a timer, log hours right after a meeting and check the week. No
+                app store needed.</p>
+        </div>
+    </div>
+    <div class="row" style="margin:0;align-items:center;">
+        <div class="col-lg-5" style="padding:12px;">
+            <h3 style="color:#16202e;font-weight:700;">Reports and Excel exports</h3>
+            <p style="color:#374151;font-size:15px;line-height:1.6;">Hours per project, expected versus actual, billable value. Export to Excel or CSV, including a file in
+                the format of Odoo's own timesheet import.</p>
+        </div>
+        <div class="col-lg-7" style="padding:12px;">
+            <img src="screenshot_en_export.jpg" alt="Hours report with export to Excel and CSV" class="img-fluid" style="max-width:100%;height:auto;border:1px solid #e2e6ec;border-radius:8px;"/>
+        </div>
+    </div>
+    <div class="row" style="margin:0;align-items:center;">
+        <div class="col-lg-7 order-2 order-lg-1" style="padding:12px;">
+            <img src="screenshot_en_pdf_template.jpg" alt="Drag-and-drop editor for the PDF layout" class="img-fluid" style="max-width:100%;height:auto;border:1px solid #e2e6ec;border-radius:8px;"/>
+        </div>
+        <div class="col-lg-5 order-1 order-lg-2" style="padding:12px;">
+            <h3 style="color:#16202e;font-weight:700;">Monthly timesheets as PDF, in your layout</h3>
+            <p style="color:#374151;font-size:15px;line-height:1.6;">Design the PDF with a drag-and-drop editor: logo, colours, tables, signature boxes. Ready for
+                customers or payroll.</p>
+        </div>
+    </div>
+    <div class="row" style="margin:0;align-items:center;">
+        <div class="col-lg-5" style="padding:12px;">
+            <h3 style="color:#16202e;font-weight:700;">The result: a signed-off month</h3>
+            <p style="color:#374151;font-size:15px;line-height:1.6;">A monthly sheet per employee, grouped by week, with totals and room for signatures.</p>
+        </div>
+        <div class="col-lg-7" style="padding:12px;">
+            <img src="screenshot_en_monthly_pdf.jpg" alt="Monthly timesheet PDF" class="img-fluid" style="max-width:100%;height:auto;border-radius:8px;"/>
+        </div>
+    </div>
+</section>
+
+<!-- ODOO SIDE -->
+<section class="oe_container" style="background:#f7f9fb;padding:32px 12px;border-radius:12px;margin-top:24px;">
+    <h2 style="text-align:center;color:#16202e;font-weight:700;margin-bottom:20px;">What the module does in Odoo</h2>
+    <div class="row" style="margin:0;align-items:center;">
+        <div class="col-lg-5" style="padding:12px;">
+            <ul style="font-size:15px;line-height:1.7;color:#374151;padding-left:20px;">
+                <li><b>No API key to manage:</b> paste a pairing code and you are connected.</li>
+                <li><b>You decide the scope:</b> choose the companies, allow or block each employee.</li>
+                <li><b>Only what is needed:</b> read projects, tasks and employees; write timesheet lines for allowed
+                    employees. No generic access to your database.</li>
+                <li><b>Signed requests</b> (HMAC-SHA256 with timestamp and nonce) in both directions.</li>
+                <li><b>Time Off (optional):</b> schedules, public holidays, allocations, balances and requests.
+                    Approving and refusing stay in Odoo.</li>
+                <li><b>Invoiced or validated lines are respected:</b> the service never forces a change on them.</li>
+                <li>Unpair at any time from the same screen.</li>
+            </ul>
+        </div>
+        <div class="col-lg-7" style="padding:12px;">
+            <img src="screenshot_en_odoo_connection.png" alt="The connection screen in Odoo, paired with the service" class="img-fluid" style="max-width:100%;height:auto;border:1px solid #e2e6ec;border-radius:8px;"/>
+        </div>
+    </div>
+    <div class="row" style="margin:0;align-items:center;">
+        <div class="col-lg-7 order-2 order-lg-1" style="padding:12px;">
+            <img src="screenshot_en_odoo_employees.png" alt="List of linked employees with an Allowed switch" class="img-fluid" style="max-width:100%;height:auto;border:1px solid #e2e6ec;border-radius:8px;"/>
+        </div>
+        <div class="col-lg-5 order-1 order-lg-2" style="padding:12px;">
+            <h3 style="color:#16202e;font-weight:700;">Linked employees</h3>
+            <p style="color:#374151;font-size:15px;line-height:1.6;">See who is linked to which Odoo employee, and switch someone off with one click.</p>
+        </div>
+    </div>
+</section>
+
+<!-- VERSIONS / EDITIONS -->
+<section class="oe_container" style="padding:32px 0 8px;">
+    <h2 style="text-align:center;color:#16202e;font-weight:700;margin-bottom:20px;">Odoo 18, 19 and 20 · Community and Enterprise</h2>
+    <div class="row" style="margin:0 6px;">
+        <div class="col-md-4" style="padding:8px;">
+            <div style="border:1px solid #e2e6ec;border-radius:10px;padding:18px;height:100%;">
+                <h4 style="color:#2f6fb0;font-size:17px;font-weight:700;">One module, three versions</h4>
+                <p style="margin:0;color:#374151;">Built from one source and tested on real Odoo 18, 19 and 20. Pick the branch of your version.</p>
+            </div>
+        </div>
+        <div class="col-md-4" style="padding:8px;">
+            <div style="border:1px solid #e2e6ec;border-radius:10px;padding:18px;height:100%;">
+                <h4 style="color:#2f6fb0;font-size:17px;font-weight:700;">Community is enough</h4>
+                <p style="margin:0;color:#374151;">Hours, projects, tasks, employees, schedules and time off only use Community apps
+                    (Project, Timesheets, Employees, Time Off).</p>
+            </div>
+        </div>
+        <div class="col-md-4" style="padding:8px;">
+            <div style="border:1px solid #e2e6ec;border-radius:10px;padding:18px;height:100%;">
+                <h4 style="color:#2f6fb0;font-size:17px;font-weight:700;">Enterprise extras</h4>
+                <p style="margin:0;color:#374151;">With Enterprise timesheet validation, lines validated in Odoo show as approved and locked in
+                    {{PRODUCT_NAME}}. Approval in {{PRODUCT_NAME}} itself works on both editions.</p>
+            </div>
+        </div>
+    </div>
+    <p style="text-align:center;color:#4b5563;margin-top:12px;">Runs on your own server and on Odoo.sh. Odoo Online does not
+        accept custom modules; there {{PRODUCT_NAME}} can connect with an API key instead (Custom plan).</p>
+</section>
+
+<!-- PRICING -->
+<section class="oe_container" style="padding:24px 12px;">
+    <div style="background:#e8f0f9;border-radius:12px;padding:28px 20px;text-align:center;">
+        <h2 style="color:#16202e;font-weight:700;margin-top:0;">Pricing</h2>
+        <p style="font-size:16px;color:#374151;max-width:720px;margin:0 auto 16px;">The connector is free. {{PRODUCT_NAME}} is a
+            web service with a free plan for up to 3 users and team plans
+            with one price for the whole team. Nothing to install besides this module.</p>
+        <a href="{{WEBSITE}}/en/pricing" target="_blank" style="display:inline-block;background:#2f6fb0;color:#ffffff;border-radius:8px;padding:10px 22px;font-weight:700;text-decoration:none;">See the plans</a>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="oe_container" style="padding:24px 12px;">
+    <h2 style="text-align:center;color:#16202e;font-weight:700;margin-bottom:16px;">Frequently asked questions</h2>
+    <div style="max-width:820px;margin:0 auto;color:#374151;font-size:15px;line-height:1.6;">
+        <p><b>Do my employees need an Odoo user?</b><br/>They need an Odoo employee record to link to. They log hours in
+            {{PRODUCT_NAME}}; the module writes the timesheet lines for them.</p>
+        <p><b>What happens to hours entered directly in Odoo?</b><br/>They are synced to {{PRODUCT_NAME}} too, so both sides show the same week.</p>
+        <p><b>Where is my data?</b><br/>Odoo keeps the projects, tasks and timesheet lines. {{PRODUCT_NAME}} keeps a copy of
+            what it needs to show the calendar, for the companies and employees you allowed.</p>
+        <p><b>Can I stop?</b><br/>Unpair in Settings › {{PRODUCT_NAME}}. The timesheet lines already in Odoo stay there.</p>
+        <p><b>Which languages?</b><br/>The module and {{PRODUCT_NAME}} are available in English, Dutch, French and German.</p>
+    </div>
+</section>
+
+<!-- OTHER LANGUAGES -->
+<section class="oe_container" style="background:#f7f9fb;padding:32px 12px;border-radius:12px;">
+    <h2 style="text-align:center;color:#16202e;font-weight:700;margin-bottom:20px;">In your language</h2>
+
+    <h3 style="color:#16202e;font-weight:700;">In het Nederlands</h3>
+    <p style="color:#374151;font-size:15px;">Uw team schrijft uren in een visuele weekkalender of op de gsm; de uren komen als
+        urenregels in Odoo Timesheets op de juiste projecten en taken. Gratis module, Odoo 18, 19 en 20, Community en Enterprise.
+        Vereist een account op {{PRODUCT_NAME}}.</p>
+    <div class="row" style="margin:0 0 24px;">
+        <div class="col-md-4" style="padding:6px;"><img src="screenshot_nl_calendar.jpg" alt="Weekkalender" class="img-fluid" style="max-width:100%;height:auto;border:1px solid #e2e6ec;border-radius:6px;"/></div>
+        <div class="col-md-4" style="padding:6px;"><img src="screenshot_nl_grid.jpg" alt="Rasterweergave" class="img-fluid" style="max-width:100%;height:auto;border:1px solid #e2e6ec;border-radius:6px;"/></div>
+        <div class="col-md-4" style="padding:6px;"><img src="screenshot_nl_mobile.jpg" alt="Mobiele app" class="img-fluid" style="max-width:100%;height:auto;border-radius:6px;"/></div>
+    </div>
+
+    <h3 style="color:#16202e;font-weight:700;">En français</h3>
+    <p style="color:#374151;font-size:15px;">Votre équipe saisit ses heures dans un calendrier hebdomadaire visuel ou sur
+        mobile ; elles arrivent dans Odoo Feuilles de temps sur les bons projets et tâches. Module gratuit, Odoo 18, 19 et 20,
+        Community et Enterprise. Nécessite un compte {{PRODUCT_NAME}}.</p>
+    <div class="row" style="margin:0 0 24px;">
+        <div class="col-md-4" style="padding:6px;"><img src="screenshot_fr_calendar.jpg" alt="Calendrier hebdomadaire" class="img-fluid" style="max-width:100%;height:auto;border:1px solid #e2e6ec;border-radius:6px;"/></div>
+        <div class="col-md-4" style="padding:6px;"><img src="screenshot_fr_grid.jpg" alt="Vue en grille" class="img-fluid" style="max-width:100%;height:auto;border:1px solid #e2e6ec;border-radius:6px;"/></div>
+        <div class="col-md-4" style="padding:6px;"><img src="screenshot_fr_mobile.jpg" alt="Application mobile" class="img-fluid" style="max-width:100%;height:auto;border-radius:6px;"/></div>
+    </div>
+
+    <h3 style="color:#16202e;font-weight:700;">Auf Deutsch</h3>
+    <p style="color:#374151;font-size:15px;">Ihr Team erfasst Stunden in einem visuellen Wochenkalender oder am Handy; sie
+        landen als Zeiterfassungszeilen in Odoo auf den richtigen Projekten und Aufgaben. Kostenloses Modul, Odoo 18, 19 und 20,
+        Community und Enterprise. Erfordert ein {{PRODUCT_NAME}}-Konto.</p>
+    <div class="row" style="margin:0;">
+        <div class="col-md-4" style="padding:6px;"><img src="screenshot_de_calendar.jpg" alt="Wochenkalender" class="img-fluid" style="max-width:100%;height:auto;border:1px solid #e2e6ec;border-radius:6px;"/></div>
+        <div class="col-md-4" style="padding:6px;"><img src="screenshot_de_grid.jpg" alt="Rasteransicht" class="img-fluid" style="max-width:100%;height:auto;border:1px solid #e2e6ec;border-radius:6px;"/></div>
+        <div class="col-md-4" style="padding:6px;"><img src="screenshot_de_mobile.jpg" alt="Mobile App" class="img-fluid" style="max-width:100%;height:auto;border-radius:6px;"/></div>
+    </div>
+</section>
+
+<!-- SUPPORT -->
+<section class="oe_container" style="padding:32px 12px;text-align:center;">
+    <h2 style="color:#16202e;font-weight:700;">Support</h2>
+    <p style="font-size:15px;color:#374151;">Questions, setup help or a bug? Mail <a href="mailto:{{SUPPORT_EMAIL}}">{{SUPPORT_EMAIL}}</a>
+        (English, Dutch, French or German).</p>
+    <p style="color:#6b7280;">Made by {{AUTHOR}}. The module is open source (LGPL-3).</p>
 </section>

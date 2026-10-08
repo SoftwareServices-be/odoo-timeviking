@@ -146,7 +146,7 @@ def test_validate_catches_store_problems():
 def test_manifest_metadata():
     man = build.manifest(build.build_tree('18'))
     assert man['license'] == 'LGPL-3' and man['price'] == 0 and man['currency'] == 'EUR'
-    assert man['images'] == ['static/description/banner.png']
+    assert man['images'][0] == 'static/description/banner.png' and len(man['images']) >= 4
     assert man['category'] == 'Services/Timesheets' and man['author'] == 'Software Services BV'
     assert man['support'] == __import__('json').loads((ROOT / 'product.json').read_text())['SUPPORT_EMAIL'] and man['website'].startswith('https://')
     assert len(man['name']) <= build.APP_NAME_MAX and 'odoo' not in man['name'].lower()
@@ -159,14 +159,19 @@ def test_images_have_store_sizes():
     tree = build.build_tree('18')
     assert png_size(tree['static/description/icon.png']) == (256, 256)
     assert png_size(tree['static/description/banner.png']) == (560, 280)
-    shots = [rel for rel in tree if re.fullmatch(r'static/description/screenshot_\d+\.png', rel)]
-    assert len(shots) >= 2
+    shots = [rel for rel in tree if re.fullmatch(r'static/description/screenshot_(en|nl|fr|de)_[a-z_]+\.(png|jpg)', rel)]
+    assert len(shots) >= 8
+    for rel in shots:                                  # store-friendly: not too heavy each, module stays small
+        assert len(tree[rel]) < 400_000, rel
+    assert sum(len(d) for r, d in tree.items() if r.startswith('static/description/')) < 3_000_000
 
 
 def test_index_html_follows_the_vendor_guidelines():
     html = read('18', 'static/description/index.html')
     assert '<script' not in html.lower() and '<form' not in html.lower() and '<iframe' not in html.lower()
-    assert [h for h in re.findall(r'href="([^"]+)"', html) if not h.startswith('mailto:')] == []   # no external links
+    website = build.manifest(build.build_tree('18'))['website']
+    links = [h for h in re.findall(r'href="([^"]+)"', html) if not h.startswith('mailto:')]
+    assert all(h.startswith(website + '/') for h in links), links   # only links to our own site (pricing)
     tree = build.build_tree('18')
     images = re.findall(r'src="([^"]+)"', html)
     assert images

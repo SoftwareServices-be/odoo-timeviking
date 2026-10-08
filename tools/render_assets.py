@@ -7,7 +7,7 @@ It needs a headless Chromium. Set one of:
   SHOT=/path/to/shot.sh     a script called as `shot.sh <url> <png> <width,height>` (the main project has var/browser/shot.sh)
   CHROME=/path/to/chrome    a Chromium or chrome-headless-shell binary
 Without either, the sibling main project's var/browser/shot.sh is used when it exists.
-Screenshots (screenshot_*.png) are taken by hand from a test Odoo and the service; see README.md.
+Screenshots (screenshot_<lang>_*.png/jpg) come from a test Odoo and the main project's site images; see README.md.
 """
 import importlib.util
 import os

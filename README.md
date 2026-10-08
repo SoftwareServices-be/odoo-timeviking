@@ -107,17 +107,23 @@ change here is in the app's download after a restart.
   the main project's `docs/merk/`).
 - `static/description/banner.png`, 560×280, the cover image (`images` in the manifest): from `assets/banner.html`, with
   the TimeViking wordmark and palette (Fjord, Staal, Koper).
-- `static/description/screenshot_1..2.png`: the connection screen and the linked-employees list in Odoo 19, in English, with
-  fictional data (https://app.timeviking.com). The service itself is Dutch, so no screenshots of it. Take them again with a
-  headless browser after UI changes (1440 px wide).
+- `static/description/screenshot_en_odoo_connection.png`, `screenshot_en_odoo_employees.png`: the connection screen and
+  the linked-employees list in Odoo 19, in English, with fictional data. Retake by hand from a test Odoo (1440 px wide).
+- `static/description/screenshot_<lang>_<what>.jpg` (lang `en`, `nl`, `fr`, `de`): the service itself, converted from
+  the site screenshots of the main project (`app/static/site/img/<lang>/*.webp`, made by its `scripts/site_screenshots.mjs`)
+  to JPEG (store browsers do not all show webp/avif), max 1400 px wide (1200 for nl/fr/de), each under 400 kB. English
+  has the full set (calendar, grid, quick entry, mobile, export, PDF template, monthly PDF); the other languages
+  calendar, grid and mobile. `mobile` puts the two phone screens side by side. The tests keep each image under 400 kB
+  and `static/description/` under 3 MB.
+- The manifest's `images` is the store carousel: the banner first (also the cover), then the main English screenshots.
 
 ```sh
 SHOT=../softwareservices-odoo-timesheets/var/browser/shot.sh python3 tools/render_assets.py   # or CHROME=/path/to/chromium
 ```
 
-The description (`static/description/index.html`) must stay in English, without JavaScript, forms, external images or
-external links (only `mailto:`); the link to the service is the `website` field of the manifest. No claims about Odoo
-licences or prices, no "official", "certified" or "partner".
+The description (`static/description/index.html`) is in English, with short Dutch, French and German sections at the
+end. No JavaScript, forms, external CSS, fonts or images (relative paths only); links only to `mailto:` and our own
+`website` (the pricing page). No claims about Odoo licences or prices, no "official", "certified" or "partner".
 
 ## Release
 
