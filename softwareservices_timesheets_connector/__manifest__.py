@@ -12,7 +12,16 @@
     'license': 'LGPL-3',
     'price': 0,
     'currency': 'EUR',
-    'images': ['static/description/banner.png'],
+    # Store carousel: the cover (banner) first, then the main screenshots.
+    'images': [
+        'static/description/banner.png',
+        'static/description/screenshot_en_calendar.jpg',
+        'static/description/screenshot_en_grid.jpg',
+        'static/description/screenshot_en_mobile.jpg',
+        'static/description/screenshot_en_odoo_connection.png',
+        'static/description/screenshot_en_odoo_employees.png',
+        'static/description/screenshot_en_pdf_template.jpg',
+    ],
     'depends': ['hr_timesheet'],
     'external_dependencies': {'python': ['requests']},
     'data': [
