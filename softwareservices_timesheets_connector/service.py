@@ -197,7 +197,7 @@ class ConnectorService:
         return {'items': self._read(records, model)}
 
     def _project_domain(self):
-        return [('allow_timesheets', '=', True), ('company_id', 'in', self.company_ids)]
+        return [('allow_timesheets', '=', True), ('company_id', 'in', self.company_ids + [False])]    # ook gedeelde projecten (zonder bedrijf)
 
     def _links(self, allowed_only=False):
         domain = [('allowed', '=', True)] if allowed_only else []
@@ -255,7 +255,7 @@ class ConnectorService:
         return out
 
     def projects(self, body):
-        domain = [('allow_timesheets', '=', True), ('company_id', 'in', self._companies(body))] + self._since(body)
+        domain = [('allow_timesheets', '=', True), ('company_id', 'in', self._companies(body) + [False])] + self._since(body)
         if body.get('project_ids'):
             domain.append(('id', 'in', _ids(body['project_ids'], 'project_ids')))
         return self._search('project.project', domain, body)

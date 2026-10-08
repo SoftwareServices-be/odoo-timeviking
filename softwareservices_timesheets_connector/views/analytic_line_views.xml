@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- SPEC 5.1 M5: zien welke regels via de koppeling zijn gemaakt -->
-    <record id="hr_timesheet_line_search" model="ir.ui.view">
-        <field name="name">account.analytic.line.search.ss_timesheets</field>
-        <field name="model">account.analytic.line</field>
-        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search"/>
-        <field name="arch" type="xml">
-            <filter name="mine" position="after">
-                <filter name="via_ss_timesheets" string="Via TimeViking" domain="[('ss_client_ref', '!=', False)]"/>
-            </filter>
-        </field>
+    <!-- SPEC 5.1 M5: zien welke regels via de koppeling zijn gemaakt.
+         Een eigen menu-item met een domein, en niet een filter in hr_timesheet.hr_timesheet_line_search: van die zoekweergave
+         zijn andere zoekweergaven afgeleid (rapporten op andere modellen, ook die van sale_timesheet), die een filter op
+         ss_client_ref erven en dan niet valideren ("Unknown field ss_client_ref"): sale_timesheet installeren lukte niet meer
+         nadat deze module er stond. -->
+    <record id="action_lines_via_connector" model="ir.actions.act_window">
+        <field name="name">Via TimeViking</field>
+        <field name="res_model">account.analytic.line</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('ss_client_ref', '!=', False), ('project_id', '!=', False)]</field>
     </record>
+
+    <menuitem id="menu_lines_via_connector" name="Via TimeViking" parent="menu_root" action="action_lines_via_connector" sequence="3"/>
 </odoo>
