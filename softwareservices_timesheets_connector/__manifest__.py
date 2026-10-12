@@ -1,9 +1,9 @@
 # The {{...}} placeholders are filled in by tools/build.py from product.json (the one place for names and links).
 {
     'name': 'TimeViking Timesheet Sync',
-    'summary': 'Sync timesheets, projects, tasks and time off with TimeViking, the fast timesheet app',
+    'summary': 'TimeViking: weekly and mobile timesheets (calendar, grid, timer, quick entry) synced two-way with Odoo Timesheets. Free up to 3 users',
     'description': '',                     # the Apps store and the Apps menu show static/description/index.html
-    'version': '18.0.1.2.1',
+    'version': '18.0.1.2.2',
     'category': 'Services/Timesheets',
     'author': 'Software Services BV',
     'maintainer': 'Software Services BV',
