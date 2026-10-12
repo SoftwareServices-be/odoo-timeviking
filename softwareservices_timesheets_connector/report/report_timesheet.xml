@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- One section (page) per employee, in the standard layout (web.external_layout) of the company of the lines.
+         `company` is set explicitly: Odoo 20 needs it for the letterhead. -->
+    <template id="report_timesheet_sections">
+        <t t-foreach="sections" t-as="section">
+            <t t-set="o" t-value="section['lines'][:1]"/>
+            <t t-set="company" t-value="section['company'].sudo()"/>
+            <t t-call="web.external_layout">
+                <div class="page ss_timesheet_report">
+                    <h2 class="mt-2"><span t-out="title"/>: <span t-out="section['employee']"/></h2>
+                    <div class="row mt-3 mb-3" id="informations">
+                        <div class="col-auto col-3 mw-100 mb-2" t-if="section['job']">
+                            <strong>Job position</strong>
+                            <div t-out="section['job']"/>
+                        </div>
+                        <div class="col-auto col-3 mw-100 mb-2">
+                            <strong>Period</strong>
+                            <div t-out="section['period']"/>
+                        </div>
+                        <div class="col-auto col-3 mw-100 mb-2">
+                            <strong>Total time</strong>
+                            <div><strong t-out="section['hours_str']"/></div>
+                        </div>
+                    </div>
+                    <table class="table table-sm o_main_table table-borderless mt-2" name="timesheet_lines">
+                        <thead style="display: table-row-group">
+                            <tr>
+                                <th class="text-start">Date</th>
+                                <th class="text-start">Project</th>
+                                <th class="text-start">Task</th>
+                                <th class="text-start">Description</th>
+                                <th class="text-end text-nowrap">Hours</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="section['rows']" t-as="row">
+                                <td class="text-nowrap"><span t-out="row['date']"/></td>
+                                <td><span t-out="row['project']"/></td>
+                                <td><span t-out="row['task']"/></td>
+                                <td><span t-out="row['description']"/><span t-if="row['via']" class="text-muted"> *</span></td>
+                                <td class="text-end text-nowrap"><span t-out="row['hours_str']"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-6 ms-auto">
+                            <table class="table table-sm table-borderless" style="page-break-inside: avoid;">
+                                <tr class="border-black o_total">
+                                    <td><strong>Total</strong></td>
+                                    <td class="text-end text-nowrap"><strong t-out="section['hours_str']"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <p class="text-muted small mt-4 ss_timeviking_note">
+                        <t t-if="section['via_count']">* Logged in TimeViking and synced to Odoo Timesheets. </t>
+                        Timesheet report by TimeViking Timesheet Sync (https://timeviking.com).
+                    </p>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_timesheet">
+        <t t-call="web.html_container">
+            <t t-call="softwareservices_timesheets_connector.report_timesheet_sections"/>
+        </t>
+    </template>
+
+    <!-- In the Print menu of the timesheet list: the selected lines, one page per employee -->
+    <record id="action_report_timesheet" model="ir.actions.report">
+        <field name="name">Timesheet report (PDF)</field>
+        <field name="model">account.analytic.line</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">softwareservices_timesheets_connector.report_timesheet</field>
+        <field name="print_report_name">'Timesheet report'</field>
+        <field name="binding_model_id" ref="analytic.model_account_analytic_line"/>
+        <field name="binding_type">report</field>
+        <field name="groups_id" eval="[(4, ref('hr_timesheet.group_hr_timesheet_user'))]"/>
+    </record>
+</odoo>

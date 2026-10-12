@@ -64,6 +64,11 @@ class Connection(models.Model):
     prev_key_id = fields.Char(readonly=True, copy=False, groups=SYSTEM)
     prev_secret = fields.Char(readonly=True, copy=False, groups=SYSTEM)
     prev_valid_until = fields.Datetime(readonly=True, copy=False, groups=SYSTEM)
+    # used by softwareservices_timesheets_connector_sale (installed automatically with Sales Timesheet)
+    invoice_timesheet_report = fields.Boolean(
+        'Attach timesheet report to invoices', default=True,
+        help='When a customer invoice with timesheets is confirmed, attach a PDF with those timesheets to it '
+             '(hours logged in TimeViking included). It is sent with the invoice email.')
     link_count = fields.Integer(compute='_compute_link_count', string='Linked employees')
 
     def _default_service_url(self):

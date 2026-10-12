@@ -1,9 +1,9 @@
 # The {{...}} placeholders are filled in by tools/build.py from product.json (the one place for names and links).
 {
     'name': 'TimeViking Timesheet Sync',
-    'summary': 'TimeViking: weekly and mobile timesheets (calendar, grid, timer, quick entry) synced two-way with Odoo Timesheets. Free up to 3 users',
+    'summary': 'TimeViking: timesheet calendar, grid view, start/stop timer and mobile app, synced two-way with Odoo Timesheets. Timesheet report PDF and timesheet attachment on invoices. Free up to 3 users',
     'description': '',                     # the Apps store and the Apps menu show static/description/index.html
-    'version': '18.0.1.2.2',
+    'version': '18.0.1.3.0',
     'category': 'Services/Timesheets',
     'author': 'Software Services BV',
     'maintainer': 'Software Services BV',
@@ -18,6 +18,8 @@
         'static/description/screenshot_en_calendar.jpg',
         'static/description/screenshot_en_grid.jpg',
         'static/description/screenshot_en_mobile.jpg',
+        'static/description/screenshot_en_odoo_report.png',
+        'static/description/screenshot_en_odoo_invoice.png',
         'static/description/screenshot_en_odoo_connection.png',
         'static/description/screenshot_en_odoo_employees.png',
         'static/description/screenshot_en_pdf_template.jpg',
@@ -31,6 +33,8 @@
         'data/connector.xml',
         'views/connection_views.xml',
         'views/analytic_line_views.xml',
+        'report/report_timesheet.xml',
+        'wizard/report_wizard_views.xml',
     ],
     'installable': True,
     'application': False,
