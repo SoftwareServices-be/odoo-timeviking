@@ -3,6 +3,11 @@
 The module version is `<odoo version>.<module version>`, for example `19.0.1.2.0`. The module version is the same for all
 Odoo versions and lives in `product.json` (`MODULE_VERSION`).
 
+## 1.2.2 (2026-10-12)
+
+- Store listing: TimeViking in 6 languages (Spanish and Italian added), link to the demo video, a clear Odoo Online
+  section (no module there, but the API connection works on the Custom plan), sharper summary, more FAQ.
+
 ## 1.2.1 (2026-10-06)
 
 - English is now the source language of all screens, menus, field labels, help texts, messages, the scheduled action and the
