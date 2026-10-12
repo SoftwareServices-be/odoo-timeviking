@@ -4,3 +4,4 @@ access_connection_connector,ss_timesheets.connection connector,ss_timesheets.con
 access_nonce_system,ss_timesheets.nonce system,ss_timesheets.nonce,base.group_system,r,
 access_link_system,ss_timesheets.employee_link system,ss_timesheets.employee_link,base.group_system,crud,
 access_link_connector,ss_timesheets.employee_link connector,ss_timesheets.employee_link,group_connector,r,
+access_report_wizard_user,ss_timesheets.report_wizard user,ss_timesheets.report_wizard,hr_timesheet.group_hr_timesheet_user,cru,

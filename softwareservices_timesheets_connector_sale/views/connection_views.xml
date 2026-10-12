@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_connection_form" model="ir.ui.view">
+        <field name="name">ss_timesheets.connection.form.sale</field>
+        <field name="model">ss_timesheets.connection</field>
+        <field name="inherit_id" ref="softwareservices_timesheets_connector.view_connection_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group" position="after">
+                <group string="Invoices" name="invoices">
+                    <field name="invoice_timesheet_report"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

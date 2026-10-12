@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- The timesheets of an invoice, one page per employee, with the report of the connector -->
+    <template id="report_invoice_timesheet">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="move">
+                <t t-set="title" t-value="move.name"/>
+                <t t-set="sections" t-value="move._ss_timesheet_lines()._ss_report_sections()"/>
+                <t t-call="softwareservices_timesheets_connector.report_timesheet_sections"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_invoice_timesheet" model="ir.actions.report">
+        <field name="name">Timesheet report (PDF)</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">softwareservices_timesheets_connector_sale.report_invoice_timesheet</field>
+        <field name="print_report_name">'Timesheets %s' % (object.name or '').replace('/', '_')</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
