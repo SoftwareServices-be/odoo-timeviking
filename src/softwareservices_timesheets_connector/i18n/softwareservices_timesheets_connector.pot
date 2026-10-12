@@ -4,16 +4,46 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-06 12:13+0000\n"
-"PO-Revision-Date: 2026-10-06 12:13+0000\n"
+"POT-Creation-Date: 2026-10-12 22:50+0000\n"
+"PO-Revision-Date: 2026-10-12 22:50+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.actions.report,print_report_name:softwareservices_timesheets_connector.action_report_timesheet
+msgid "'Timesheet report'"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "* Logged in {{PRODUCT_NAME}} and synced to Odoo Timesheets."
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "<strong>Job position</strong>"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "<strong>Period</strong>"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "<strong>Total time</strong>"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "<strong>Total</strong>"
+msgstr ""
 
 #. module: softwareservices_timesheets_connector
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__odoo_url
@@ -28,6 +58,16 @@ msgstr ""
 #. module: softwareservices_timesheets_connector
 #: model:ir.model,name:softwareservices_timesheets_connector.model_account_analytic_line
 msgid "Analytic Line"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__invoice_timesheet_report
+msgid "Attach timesheet report to invoices"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_report_wizard_form
+msgid "Cancel"
 msgstr ""
 
 #. module: softwareservices_timesheets_connector
@@ -67,19 +107,34 @@ msgstr ""
 #. module: softwareservices_timesheets_connector
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__create_uid
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__create_uid
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: softwareservices_timesheets_connector
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__create_date
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__create_date
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__create_date
 msgid "Created on"
 msgstr ""
 
 #. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "Date"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "Description"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_account_analytic_line__display_name
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_report_softwareservices_timesheets_connector_report_timesheet__display_name
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__display_name
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__display_name
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_nonce__display_name
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -94,14 +149,28 @@ msgid "Employee linked to {{PRODUCT_NAME}}"
 msgstr ""
 
 #. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__employee_ids
 #: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_connection_form
 msgid "Employees"
 msgstr ""
 
 #. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__date_from
+msgid "From"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "Hours"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_account_analytic_line__id
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_report_softwareservices_timesheets_connector_report_timesheet__id
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__id
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__id
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_nonce__id
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__id
 msgid "ID"
 msgstr ""
 
@@ -121,18 +190,30 @@ msgstr ""
 #. module: softwareservices_timesheets_connector
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__write_uid
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__write_uid
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: softwareservices_timesheets_connector
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__write_date
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__write_date
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: softwareservices_timesheets_connector
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__last_message
 msgid "Last message"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,help:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__project_ids
+msgid "Leave empty for all projects."
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,help:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__employee_ids
+msgid "Leave empty for every employee whose timesheets you may see."
 msgstr ""
 
 #. module: softwareservices_timesheets_connector
@@ -156,6 +237,12 @@ msgid "Mode"
 msgstr ""
 
 #. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/timesheet_report.py:0
+msgid "No timesheets in this period."
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_nonce__nonce
 msgid "Nonce"
 msgstr ""
@@ -174,6 +261,13 @@ msgstr ""
 #: model:ir.model.fields,help:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__allowed
 msgid ""
 "Off: the service may no longer write or change timesheets for this employee."
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_report_wizard_form
+msgid ""
+"One page per employee, in your company's document layout.\n"
+"                    Hours logged in {{PRODUCT_NAME}} are included: they are normal Odoo timesheets."
 msgstr ""
 
 #. module: softwareservices_timesheets_connector
@@ -235,6 +329,31 @@ msgid "Prev Valid Until"
 msgstr ""
 
 #. module: softwareservices_timesheets_connector
+#: model:ir.model,name:softwareservices_timesheets_connector.model_ss_timesheets_report_wizard
+msgid "Print a timesheet report"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_report_wizard_form
+msgid "Print report"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_report_wizard_form
+msgid "Print timesheet report"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "Project"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__project_ids
+msgid "Projects"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
 #: model:ir.model.fields.selection,name:softwareservices_timesheets_connector.selection__ss_timesheets_connection__mode__push
 msgid "Push: the service calls Odoo"
 msgstr ""
@@ -262,6 +381,11 @@ msgstr ""
 #. module: softwareservices_timesheets_connector
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__state
 msgid "Status"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "Task"
 msgstr ""
 
 #. module: softwareservices_timesheets_connector
@@ -319,6 +443,12 @@ msgstr ""
 
 #. module: softwareservices_timesheets_connector
 #. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/timesheet_report.py:0
+msgid "The start date must be before the end date."
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#. odoo-python
 #: code:addons/softwareservices_timesheets_connector/models/connection.py:0
 msgid "This Odoo is not paired."
 msgstr ""
@@ -355,6 +485,39 @@ msgstr ""
 #. module: softwareservices_timesheets_connector
 #: model:res.groups,name:softwareservices_timesheets_connector.group_connector
 msgid "{{PRODUCT_NAME}}: connector"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.ui.menu,name:softwareservices_timesheets_connector.menu_report_wizard
+msgid "Timesheet Report (PDF)"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/timesheet_report.py:0
+#: model:ir.actions.act_window,name:softwareservices_timesheets_connector.action_report_wizard
+msgid "Timesheet report"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.actions.report,name:softwareservices_timesheets_connector.action_report_timesheet
+msgid "Timesheet report (PDF)"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid ""
+"Timesheet report by {{APP_NAME}} ({{WEBSITE}})."
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model,name:softwareservices_timesheets_connector.model_report_softwareservices_timesheets_connector_report_timesheet
+msgid "Timesheet report per employee"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__date_to
+msgid "To"
 msgstr ""
 
 #. module: softwareservices_timesheets_connector
@@ -404,6 +567,14 @@ msgstr ""
 #: model:ir.actions.act_window,name:softwareservices_timesheets_connector.action_lines_via_connector
 #: model:ir.ui.menu,name:softwareservices_timesheets_connector.menu_lines_via_connector
 msgid "Via {{PRODUCT_NAME}}"
+msgstr ""
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,help:softwareservices_timesheets_connector.field_ss_timesheets_connection__invoice_timesheet_report
+msgid ""
+"When a customer invoice with timesheets is confirmed, attach a PDF with "
+"those timesheets to it (hours logged in {{PRODUCT_NAME}} included). It is sent "
+"with the invoice email."
 msgstr ""
 
 #. module: softwareservices_timesheets_connector

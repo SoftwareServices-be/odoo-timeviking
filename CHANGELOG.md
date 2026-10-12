@@ -3,6 +3,15 @@
 The module version is `<odoo version>.<module version>`, for example `19.0.1.2.0`. The module version is the same for all
 Odoo versions and lives in `product.json` (`MODULE_VERSION`).
 
+## 1.3.0 (2026-10-12)
+
+- Timesheet report (PDF): Timesheets › Reporting › Timesheet Report (PDF), and Print › Timesheet report (PDF) on the
+  timesheet list. One page per employee in the company's document layout; hours logged in TimeViking are marked.
+- Timesheets on invoices: new bridge module `softwareservices_timesheets_connector_sale` (installed automatically with
+  Sales Timesheet). Confirming a customer invoice attaches a PDF with the hours it bills, and the invoice email sends it
+  along. On by default (Settings › TimeViking › Connection), plus an "Attach Timesheets" button on the invoice.
+- Store listing: report and invoice attachment, new screenshots, summary with the main search terms.
+
 ## 1.2.2 (2026-10-12)
 
 - Store listing: TimeViking in 6 languages (Spanish and Italian added), link to the demo video, a clear Odoo Online

@@ -18,6 +18,12 @@ main branch (this one)                      18.0 / 19.0 / 20.0 branches (generat
 └── dist/             local build output (not in git)
 ```
 
+**Two modules, one release.** `src/softwareservices_timesheets_connector_sale` is a small bridge with Sales Timesheet
+(`auto_install`, depends on the connector and `sale_timesheet`): it attaches the timesheet report to confirmed customer
+invoices and their email, and adds the "Attach Timesheets" button. Without `sale_timesheet` it is never installed, so the
+connector itself only needs `hr_timesheet`. `tools/build.py` builds both (`MODULES`), with the same version, into the
+same branches and zip.
+
 **Why a branch per Odoo version.** The Odoo Apps store registers a repository per Odoo version with an SSH URL that ends in
 the branch, for example `ssh://git@github.com/<owner>/softwareservices-timesheets-odoo#19.0`, and scans the root of that
 branch for module folders. That is the same layout as the Odoo and OCA repositories. Odoo.sh and plain `git clone -b 19.0`
@@ -115,6 +121,11 @@ change here is in the app's download after a restart.
   has the full set (calendar, grid, quick entry, mobile, export, PDF template, monthly PDF); the other languages
   calendar, grid and mobile. `mobile` puts the two phone screens side by side. The tests keep each image under 400 kB
   and `static/description/` under 3 MB.
+- `static/description/screenshot_en_odoo_report.png` and `screenshot_en_odoo_invoice.png`: the timesheet report (PDF,
+  page 1) and a customer invoice with the attached report, in Odoo 19 with invented data. Retake: install
+  `sale_timesheet` and the connector in a throw-away Odoo 19 databank, run `tools/seed_demo.py` in `odoo-bin shell` (it
+  prints `DEMO_LINES` and `DEMO_INVOICE`), start that Odoo and run `tools/screenshots.mjs` (needs `node_modules`, a
+  symlink to the main project's, and PyMuPDF).
 - The manifest's `images` is the store carousel: the banner first (also the cover), then the main English screenshots.
 
 ```sh

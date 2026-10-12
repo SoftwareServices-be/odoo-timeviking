@@ -17,6 +17,7 @@
                 <span style="display:inline-block;background:#2f6fb0;color:#ffffff;border-radius:16px;padding:5px 14px;margin:3px;font-weight:600;">Two-way sync</span>
                 <span style="display:inline-block;background:#24344a;color:#ffffff;border-radius:16px;padding:5px 14px;margin:3px;">Community and Enterprise</span>
                 <span style="display:inline-block;background:#24344a;color:#ffffff;border-radius:16px;padding:5px 14px;margin:3px;">Time Off aware</span>
+                <span style="display:inline-block;background:#24344a;color:#ffffff;border-radius:16px;padding:5px 14px;margin:3px;">Timesheet report PDF &amp; invoice attachment</span>
                 <span style="display:inline-block;background:#24344a;color:#ffffff;border-radius:16px;padding:5px 14px;margin:3px;">6 languages</span>
             </p>
             <p style="margin-top:18px;"><a href="{{WEBSITE}}/en/" target="_blank" style="display:inline-block;background:#d9a066;color:#16202e;border-radius:8px;padding:9px 20px;font-weight:700;text-decoration:none;">&#9654; Watch the 1-minute demo video</a></p>
@@ -159,6 +160,37 @@
         </div>
         <div class="col-lg-7" style="padding:12px;">
             <img src="screenshot_en_monthly_pdf.jpg" alt="Monthly timesheet PDF" class="img-fluid" style="max-width:100%;height:auto;border-radius:8px;"/>
+        </div>
+    </div>
+</section>
+
+<!-- REPORT AND INVOICE (in Odoo, free) -->
+<section class="oe_container" style="padding:32px 0 8px;">
+    <h2 style="text-align:center;color:#16202e;font-weight:700;margin-bottom:8px;">Timesheet report (PDF) and timesheets on invoices, in Odoo</h2>
+    <p style="text-align:center;color:#374151;font-size:15px;margin-bottom:20px;">Included in this free module, also before you pair it.</p>
+    <div class="row" style="margin:0;align-items:center;">
+        <div class="col-lg-5" style="padding:12px;">
+            <h3 style="color:#16202e;font-weight:700;">Print a timesheet report per employee</h3>
+            <p style="color:#374151;font-size:15px;line-height:1.6;">Timesheets › Reporting › <i>Timesheet Report (PDF)</i>:
+                pick a period, employees and projects, and print one page per employee in your company's document
+                layout, with date, project, task, description, hours and total. Or select lines in the timesheet list
+                and use <i>Print › Timesheet report (PDF)</i>.</p>
+        </div>
+        <div class="col-lg-7" style="padding:12px;">
+            <img src="screenshot_en_odoo_report.png" alt="Timesheet report PDF per employee, printed from Odoo" class="img-fluid" style="max-width:100%;height:auto;border:1px solid #e2e6ec;border-radius:8px;"/>
+        </div>
+    </div>
+    <div class="row" style="margin:0;align-items:center;">
+        <div class="col-lg-7 order-2 order-lg-1" style="padding:12px;">
+            <img src="screenshot_en_odoo_invoice.png" alt="Customer invoice with the timesheet report attached" class="img-fluid" style="max-width:100%;height:auto;border:1px solid #e2e6ec;border-radius:8px;"/>
+        </div>
+        <div class="col-lg-5 order-1 order-lg-2" style="padding:12px;">
+            <h3 style="color:#16202e;font-weight:700;">Timesheet attachment on customer invoices</h3>
+            <p style="color:#374151;font-size:15px;line-height:1.6;">With Sales Timesheet installed, confirming a customer
+                invoice attaches a PDF with the hours it bills, and the invoice email sends it along. Your customer sees
+                exactly what was done. On by default, a switch in Settings › {{PRODUCT_NAME}}, and an
+                <i>Attach Timesheets</i> button on the invoice. A small companion module
+                (<code>softwareservices_timesheets_connector_sale</code>) installs itself automatically.</p>
         </div>
     </div>
 </section>

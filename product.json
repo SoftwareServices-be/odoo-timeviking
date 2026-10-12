@@ -3,10 +3,10 @@
   "PRODUCT_NAME": "TimeViking",
   "APP_NAME": "{{PRODUCT_NAME}} Timesheet Sync",
   "NAME_FINAL": true,
-  "SUMMARY": "{{PRODUCT_NAME}}: weekly and mobile timesheets (calendar, grid, timer, quick entry) synced two-way with Odoo Timesheets. Free up to 3 users",
+  "SUMMARY": "{{PRODUCT_NAME}}: timesheet calendar, grid view, start/stop timer and mobile app, synced two-way with Odoo Timesheets. Timesheet report PDF and timesheet attachment on invoices. Free up to 3 users",
   "WEBSITE": "https://timeviking.com",
   "SUPPORT_EMAIL": "support@timeviking.com",
   "AUTHOR": "Software Services BV",
   "CATEGORY": "Services/Timesheets",
-  "MODULE_VERSION": "1.2.2"
+  "MODULE_VERSION": "1.3.0"
 }

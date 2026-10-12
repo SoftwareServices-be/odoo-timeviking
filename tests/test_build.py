@@ -41,13 +41,25 @@ def test_build_is_valid_for_the_store(version):
 
 
 @pytest.mark.parametrize('version', build.VERSIONS)
-def test_zip_has_one_folder_and_no_bytecode(version):
+def test_zip_has_the_module_folders_and_no_bytecode(version):
     entries = names(version)
-    assert {n.split('/')[0] for n in entries} == {MODULE}
+    assert {n.split('/')[0] for n in entries} == set(build.MODULES)
     assert PREFIX + '__manifest__.py' in entries and PREFIX + 'tests/test_service.py' in entries
     assert PREFIX + 'static/description/icon.png' in entries and PREFIX + 'static/description/index.html' in entries
     assert not [n for n in entries if '__pycache__' in n or n.endswith(('.pyc', '.pyo'))]
     assert build.zip_name(version) == f'{MODULE}-{version}.0.zip'
+
+
+@pytest.mark.parametrize('version', build.VERSIONS)
+def test_bridge_with_sales_timesheet(version):
+    tree = build.build_tree(version, module=build.BRIDGE)
+    man = build.manifest(tree)
+    assert man['auto_install'] is True and man['depends'] == [MODULE, 'sale_timesheet']
+    assert man['version'] == build.full_version(version) and man['license'] == 'LGPL-3'
+    assert build.validate(version, tree) == []
+    assert 'hr_timesheet' in build.manifest(build.build_tree(version))['depends']
+    assert 'sale_timesheet' not in build.manifest(build.build_tree(version))['depends']   # soft dependency only
+    assert f'{build.BRIDGE}/__manifest__.py' in build.branch_tree(version)
 
 
 def test_zip_is_reproducible():
@@ -71,6 +83,7 @@ def test_known_differences_per_version():
     assert 'ir.access.csv' in read('20', '__manifest__.py')
     assert 'operation' in read('20', 'security/ir.access.csv').splitlines()[0]
     assert '.get_str(' in read('20', 'models/connection.py') and '.get_param(' in read('19', 'models/connection.py')
+    assert '.set_str(' in read('20', 'tests/test_report.py') and '.set_param(' in read('19', 'tests/test_report.py')
 
 
 @pytest.mark.parametrize('version', build.VERSIONS)
@@ -98,7 +111,7 @@ def test_write_dist_removes_stale_files(tmp_path):
 
 def test_product_name_lives_only_in_product_json():
     values = build.product()
-    for rel, path in build.source_files():
+    for rel, path in [f for m in build.MODULES for f in build.source_files(build.source_dir(m))]:
         if path.suffix in build.RENDER_SUFFIXES:
             assert values['PRODUCT_NAME'] not in path.read_text(encoding='utf-8'), rel
     tree = build.build_tree('18')

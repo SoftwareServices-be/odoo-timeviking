@@ -27,6 +27,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MODULE = 'softwareservices_timesheets_connector'
+# the bridge with Sales Timesheet (auto_install): timesheet report on invoices. Same branch, zip and version.
+BRIDGE = 'softwareservices_timesheets_connector_sale'
+MODULES = (MODULE, BRIDGE)
 SOURCE_VERSION = '18'
 VERSIONS = ('18', '19', '20')
 SKIP_DIRS = {'__pycache__'}
@@ -39,8 +42,8 @@ APP_NAME_MAX = 25                         # Odoo Apps vendor guidelines: "no mor
 REQUIRED_FILES = ('__manifest__.py', 'static/description/icon.png', 'static/description/index.html')
 
 
-def source_dir():
-    return ROOT / 'src' / MODULE
+def source_dir(module=MODULE):
+    return ROOT / 'src' / module
 
 
 def product():
@@ -121,7 +124,7 @@ def convert(rel, text, version):
         text = text.replace('security/ir.model.access.csv', 'security/ir.access.csv')
         if rel == 'security/ir.model.access.csv':
             text = _access_csv_20(text)
-        text = text.replace('.get_param(', '.get_str(')
+        text = text.replace('.get_param(', '.get_str(').replace('.set_param(', '.set_str(')
     return text
 
 
@@ -135,12 +138,12 @@ def source_files(src=None):
             yield rel.as_posix(), path
 
 
-def build_tree(version, src=None, values=None):
-    """{path inside the module: bytes} for one Odoo version."""
+def build_tree(version, src=None, values=None, module=MODULE):
+    """{path inside the module: bytes} for one module and one Odoo version."""
     version = _check_version(version)
     values = values or product()
     files = {}
-    for rel, path in source_files(src):
+    for rel, path in source_files(src or source_dir(module)):
         data = path.read_bytes()
         if path.suffix in RENDER_SUFFIXES:
             text = render(data.decode('utf-8'), version, values)
@@ -155,10 +158,17 @@ def manifest(tree):
     return ast.literal_eval(tree['__manifest__.py'].decode('utf-8'))
 
 
-def validate(version, tree=None):
-    """Problems that would break an install or the Odoo Apps listing (empty list = fine)."""
+def validate(version, tree=None, module=None):
+    """Problems that would break an install or the Odoo Apps listing (empty list = fine).
+
+    Without `tree` and `module`: every module in MODULES (problems of the bridge are prefixed with its name)."""
     version = _check_version(version)
-    tree = tree if tree is not None else build_tree(version)
+    if tree is None and module is None:
+        problems = validate(version, module=MODULE)
+        for other in MODULES[1:]:
+            problems += [f'{other}: {p}' for p in validate(version, module=other)]
+        return problems
+    tree = tree if tree is not None else build_tree(version, module=module)
     problems = [f'missing {rel}' for rel in REQUIRED_FILES if rel not in tree]
     if '__manifest__.py' not in tree:
         return problems
@@ -189,12 +199,18 @@ def validate(version, tree=None):
     return problems
 
 
+def _all_files(version):
+    for module in MODULES:
+        for rel, data in build_tree(version, module=module).items():
+            yield module, rel, data
+
+
 def build_zip(version):
-    """The zip as bytes: the module folder as the only top-level entry, no bytecode, reproducible."""
+    """The zip as bytes: the module folders (connector first, then the bridge) at the top, no bytecode, reproducible."""
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, 'w', zipfile.ZIP_DEFLATED) as zf:
-        for rel, data in build_tree(version).items():
-            info = zipfile.ZipInfo(f'{MODULE}/{rel}', ZIP_DATE)
+        for module, rel, data in _all_files(version):
+            info = zipfile.ZipInfo(f'{module}/{rel}', ZIP_DATE)
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o644 << 16
             zf.writestr(info, data)
@@ -202,10 +218,16 @@ def build_zip(version):
 
 
 def write_dist(version, out=None):
-    """dist/<version>.0/<module>/, rebuilt from scratch (stale files removed)."""
+    """dist/<version>.0/<module>/ for every module, rebuilt from scratch (stale files removed). Returns the connector's."""
     version = _check_version(version)
-    base = Path(out or ROOT / 'dist') / f'{version}.0' / MODULE
-    tree = build_tree(version)
+    for module in reversed(MODULES):
+        base = _write_dist_module(version, module, out)
+    return base
+
+
+def _write_dist_module(version, module, out):
+    base = Path(out or ROOT / 'dist') / f'{version}.0' / module
+    tree = build_tree(version, module=module)
     if base.exists():
         for p in sorted(base.rglob('*'), reverse=True):
             rel = p.relative_to(base).as_posix()
@@ -238,7 +260,7 @@ def branch_readme(version):
 
 def branch_tree(version):
     """{path in the branch: bytes}: the module folder at the root (as the Odoo Apps store reads it), README and LICENSE."""
-    files = {f'{MODULE}/{rel}': data for rel, data in build_tree(version).items()}
+    files = {f'{module}/{rel}': data for module, rel, data in _all_files(version)}
     files['README.md'] = branch_readme(version)
     files['LICENSE'] = (ROOT / 'LICENSE').read_bytes()
     return files
