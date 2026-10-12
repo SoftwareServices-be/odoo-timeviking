@@ -17,6 +17,36 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: softwareservices_timesheets_connector
+#: model:ir.actions.report,print_report_name:softwareservices_timesheets_connector.action_report_timesheet
+msgid "'Timesheet report'"
+msgstr "'Relevé des heures'"
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "* Logged in TimeViking and synced to Odoo Timesheets."
+msgstr "* Saisi dans TimeViking et synchronisé avec Odoo Feuilles de temps."
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "<strong>Job position</strong>"
+msgstr "<strong>Poste</strong>"
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "<strong>Period</strong>"
+msgstr "<strong>Période</strong>"
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "<strong>Total time</strong>"
+msgstr "<strong>Temps total</strong>"
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "<strong>Total</strong>"
+msgstr "<strong>Total</strong>"
+
+#. module: softwareservices_timesheets_connector
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__odoo_url
 msgid "Address of this Odoo"
 msgstr "Adresse de cet Odoo"
@@ -30,6 +60,16 @@ msgstr "Autorisé"
 #: model:ir.model,name:softwareservices_timesheets_connector.model_account_analytic_line
 msgid "Analytic Line"
 msgstr "Ligne analytique"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__invoice_timesheet_report
+msgid "Attach timesheet report to invoices"
+msgstr "Joindre le relevé des heures aux factures"
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_report_wizard_form
+msgid "Cancel"
+msgstr "Annuler"
 
 #. module: softwareservices_timesheets_connector
 #. odoo-python
@@ -68,19 +108,34 @@ msgstr "Connexion avec TimeViking"
 #. module: softwareservices_timesheets_connector
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__create_uid
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__create_uid
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__create_uid
 msgid "Created by"
 msgstr "Créé par"
 
 #. module: softwareservices_timesheets_connector
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__create_date
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__create_date
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__create_date
 msgid "Created on"
 msgstr "Créé le"
 
 #. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "Date"
+msgstr "Date"
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "Description"
+msgstr "Description"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_account_analytic_line__display_name
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_report_softwareservices_timesheets_connector_report_timesheet__display_name
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__display_name
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__display_name
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_nonce__display_name
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
@@ -95,25 +150,35 @@ msgid "Employee linked to TimeViking"
 msgstr "Employé lié à TimeViking"
 
 #. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__employee_ids
 #: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_connection_form
 msgid "Employees"
 msgstr "Employés"
 
 #. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__date_from
+msgid "From"
+msgstr "Du"
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "Hours"
+msgstr "Heures"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_account_analytic_line__id
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_report_softwareservices_timesheets_connector_report_timesheet__id
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__id
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__id
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_nonce__id
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__id
 msgid "ID"
 msgstr "ID"
 
 #. module: softwareservices_timesheets_connector
 #: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_connection_form
-msgid ""
-"In TimeViking, go to Settings › Odoo, create a pairing code and paste it below.\n"
-"                        The code is valid for 15 minutes."
-msgstr ""
-"Dans TimeViking, allez dans Paramètres › Odoo, créez un code de couplage et collez-le ci-dessous.\n"
-"                        Le code est valable 15 minutes."
+msgid "In TimeViking, go to Settings › Odoo, create a pairing code and paste it below.\n                        The code is valid for 15 minutes."
+msgstr "Dans TimeViking, allez dans Paramètres › Odoo, créez un code de couplage et collez-le ci-dessous.\n                        Le code est valable 15 minutes."
 
 #. module: softwareservices_timesheets_connector
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__key_id
@@ -124,12 +189,14 @@ msgstr "Clé"
 #. module: softwareservices_timesheets_connector
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__write_uid
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__write_uid
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__write_uid
 msgid "Last Updated by"
 msgstr "Dernière mise à jour par"
 
 #. module: softwareservices_timesheets_connector
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__write_date
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__write_date
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__write_date
 msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
@@ -137,6 +204,16 @@ msgstr "Dernière mise à jour le"
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_connection__last_message
 msgid "Last message"
 msgstr "Dernier message"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,help:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__project_ids
+msgid "Leave empty for all projects."
+msgstr "Laissez vide pour tous les projets."
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,help:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__employee_ids
+msgid "Leave empty for every employee whose timesheets you may see."
+msgstr "Laissez vide pour tous les employés dont vous pouvez voir les heures."
 
 #. module: softwareservices_timesheets_connector
 #. odoo-python
@@ -159,6 +236,12 @@ msgid "Mode"
 msgstr "Mode"
 
 #. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/timesheet_report.py:0
+msgid "No timesheets in this period."
+msgstr "Aucune heure sur cette période."
+
+#. module: softwareservices_timesheets_connector
 #: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_nonce__nonce
 msgid "Nonce"
 msgstr "Nonce"
@@ -175,9 +258,13 @@ msgstr "Non couplé"
 
 #. module: softwareservices_timesheets_connector
 #: model:ir.model.fields,help:softwareservices_timesheets_connector.field_ss_timesheets_employee_link__allowed
-msgid ""
-"Off: the service may no longer write or change timesheets for this employee."
+msgid "Off: the service may no longer write or change timesheets for this employee."
 msgstr "Désactivé : le service ne peut plus écrire ni modifier de feuilles de temps pour cet employé."
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_report_wizard_form
+msgid "One page per employee, in your company's document layout.\n                    Hours logged in TimeViking are included: they are normal Odoo timesheets."
+msgstr "Une page par employé, dans la mise en page des documents de votre société. Les heures saisies dans TimeViking sont incluses : ce sont des feuilles de temps Odoo normales."
 
 #. module: softwareservices_timesheets_connector
 #: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_connection_form
@@ -238,6 +325,31 @@ msgid "Prev Valid Until"
 msgstr "Précédent valide jusqu’au"
 
 #. module: softwareservices_timesheets_connector
+#: model:ir.model,name:softwareservices_timesheets_connector.model_ss_timesheets_report_wizard
+msgid "Print a timesheet report"
+msgstr "Imprimer un relevé des heures"
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_report_wizard_form
+msgid "Print report"
+msgstr "Imprimer le rapport"
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_report_wizard_form
+msgid "Print timesheet report"
+msgstr "Imprimer le relevé des heures"
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "Project"
+msgstr "Projet"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__project_ids
+msgid "Projects"
+msgstr "Projets"
+
+#. module: softwareservices_timesheets_connector
 #: model:ir.model.fields.selection,name:softwareservices_timesheets_connector.selection__ss_timesheets_connection__mode__push
 msgid "Push: the service calls Odoo"
 msgstr "Push : le service appelle Odoo"
@@ -268,6 +380,11 @@ msgid "Status"
 msgstr "Statut"
 
 #. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "Task"
+msgstr "Tâche"
+
+#. module: softwareservices_timesheets_connector
 #: model:res.groups,comment:softwareservices_timesheets_connector.group_connector
 msgid "Technical group of the TimeViking module. Do not give it to people."
 msgstr "Groupe technique du module TimeViking. Ne pas l’attribuer à des personnes."
@@ -290,15 +407,13 @@ msgstr "La réponse de %(url)s n’est pas signée correctement."
 
 #. module: softwareservices_timesheets_connector
 #: model:ir.model.fields,help:softwareservices_timesheets_connector.field_ss_timesheets_connection__company_ids
-msgid ""
-"The companies whose projects, employees and timesheets the service may see."
+msgid "The companies whose projects, employees and timesheets the service may see."
 msgstr "Les sociétés dont le service peut voir les projets, employés et feuilles de temps."
 
 #. module: softwareservices_timesheets_connector
 #. odoo-python
 #: code:addons/softwareservices_timesheets_connector/models/connection.py:0
-msgid ""
-"The pairing code is invalid or expired. Create a new one in TimeViking."
+msgid "The pairing code is invalid or expired. Create a new one in TimeViking."
 msgstr "Le code de couplage est invalide ou expiré. Créez-en un nouveau dans TimeViking."
 
 #. module: softwareservices_timesheets_connector
@@ -315,10 +430,14 @@ msgstr "Le service a refusé le test : %(error)s"
 
 #. module: softwareservices_timesheets_connector
 #: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_connection_form
-msgid ""
-"The service will no longer be able to write timesheets in Odoo. Pairing "
-"again needs a new pairing code. Continue?"
+msgid "The service will no longer be able to write timesheets in Odoo. Pairing again needs a new pairing code. Continue?"
 msgstr "Le service ne pourra plus écrire de feuilles de temps dans Odoo. Un nouveau couplage demande un nouveau code. Continuer ?"
+
+#. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/timesheet_report.py:0
+msgid "The start date must be before the end date."
+msgstr "La date de début doit précéder la date de fin."
 
 #. module: softwareservices_timesheets_connector
 #. odoo-python
@@ -361,6 +480,38 @@ msgid "TimeViking: connector"
 msgstr "TimeViking : connecteur"
 
 #. module: softwareservices_timesheets_connector
+#: model:ir.ui.menu,name:softwareservices_timesheets_connector.menu_report_wizard
+msgid "Timesheet Report (PDF)"
+msgstr "Relevé des heures (PDF)"
+
+#. module: softwareservices_timesheets_connector
+#. odoo-python
+#: code:addons/softwareservices_timesheets_connector/models/timesheet_report.py:0
+#: model:ir.actions.act_window,name:softwareservices_timesheets_connector.action_report_wizard
+msgid "Timesheet report"
+msgstr "Relevé des heures"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.actions.report,name:softwareservices_timesheets_connector.action_report_timesheet
+msgid "Timesheet report (PDF)"
+msgstr "Relevé des heures (PDF)"
+
+#. module: softwareservices_timesheets_connector
+#: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.report_timesheet_sections
+msgid "Timesheet report by TimeViking Timesheet Sync (https://timeviking.com)."
+msgstr "Relevé des heures par TimeViking Timesheet Sync (https://timeviking.com)."
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model,name:softwareservices_timesheets_connector.model_report_softwareservices_timesheets_connector_report_timesheet
+msgid "Timesheet report per employee"
+msgstr "Relevé des heures par employé"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,field_description:softwareservices_timesheets_connector.field_ss_timesheets_report_wizard__date_to
+msgid "To"
+msgstr "Au"
+
+#. module: softwareservices_timesheets_connector
 #: model_terms:ir.ui.view,arch_db:softwareservices_timesheets_connector.view_connection_form
 msgid "Unpair"
 msgstr "Découpler"
@@ -380,17 +531,13 @@ msgstr "Découplé par TimeViking"
 #. module: softwareservices_timesheets_connector
 #. odoo-python
 #: code:addons/softwareservices_timesheets_connector/models/connection.py:0
-msgid ""
-"Unpaired; the service answered HTTP %(status)s and will notice at the next "
-"request"
+msgid "Unpaired; the service answered HTTP %(status)s and will notice at the next request"
 msgstr "Découplé ; le service a répondu HTTP %(status)s et s’en apercevra à la prochaine requête"
 
 #. module: softwareservices_timesheets_connector
 #. odoo-python
 #: code:addons/softwareservices_timesheets_connector/models/connection.py:0
-msgid ""
-"Unpaired; the service was not reachable (%(error)s) and will notice at the "
-"next request"
+msgid "Unpaired; the service was not reachable (%(error)s) and will notice at the next request"
 msgstr "Découplé ; le service n’était pas joignable (%(error)s) et s’en apercevra à la prochaine requête"
 
 #. module: softwareservices_timesheets_connector
@@ -408,6 +555,11 @@ msgstr "Utilisateur dans TimeViking"
 #: model:ir.ui.menu,name:softwareservices_timesheets_connector.menu_lines_via_connector
 msgid "Via TimeViking"
 msgstr "Via TimeViking"
+
+#. module: softwareservices_timesheets_connector
+#: model:ir.model.fields,help:softwareservices_timesheets_connector.field_ss_timesheets_connection__invoice_timesheet_report
+msgid "When a customer invoice with timesheets is confirmed, attach a PDF with those timesheets to it (hours logged in TimeViking included). It is sent with the invoice email."
+msgstr "Lorsqu'une facture client avec des heures est confirmée, un PDF de ces heures y est joint (heures saisies dans TimeViking comprises). Il est envoyé avec l'e-mail de la facture."
 
 #. module: softwareservices_timesheets_connector
 #: model:ir.model.fields,help:softwareservices_timesheets_connector.field_ss_timesheets_connection__odoo_url

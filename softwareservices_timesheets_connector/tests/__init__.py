@@ -4,3 +4,4 @@ from . import test_pairing
 from . import test_controller
 from . import test_hr
 from . import test_i18n
+from . import test_report
