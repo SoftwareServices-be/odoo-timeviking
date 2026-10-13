@@ -1,6 +1,8 @@
 # Demo data for the store screenshots of the report and the invoice attachment (invented names, no personal data).
 # Needs sale_timesheet and both modules. Run in `odoo-bin shell -c <conf> -d <db> --no-http < tools/seed_demo.py`.
 # Prints DEMO_LINES=<ids> and DEMO_INVOICE=<id> for tools/screenshots.mjs. Meant for a throw-away databank.
+import base64
+import os
 import random
 from datetime import date, timedelta
 
@@ -9,6 +11,10 @@ company = env.company
 company.write({'name': 'Fjord Consulting', 'street': 'Havenlaan 12', 'city': 'Gent', 'zip': '9000',
                'country_id': env.ref('base.be').id, 'email': 'info@fjord.example', 'phone': '+32 9 000 00 00',
                'external_report_layout_id': env.ref('web.external_layout_standard').id})
+# invented logo of the fictional demo company (assets/demo_logo.svg -> .png), instead of Odoo's "Your logo"
+_logo = os.path.join(os.environ.get('DEMO_ROOT', '.'), 'assets', 'demo_logo.png')
+if os.path.exists(_logo):
+    company.logo = base64.b64encode(open(_logo, 'rb').read())
 env['res.users'].browse(2).write({'password': 'admin'})
 Partner, Project, Task, Employee = env['res.partner'], env['project.project'], env['project.task'], env['hr.employee']
 harbor = Partner.create({'name': 'Harbor Logistics', 'is_company': True, 'email': 'ap@harbor.example',
